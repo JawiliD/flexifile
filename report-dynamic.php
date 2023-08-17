@@ -82,7 +82,7 @@
             </form>   
             </div>
             <hr>
-            <div class="fourtheen-div">
+            <div class="fourteen-div">
                 
             </div>
              
