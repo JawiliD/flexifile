@@ -36,7 +36,7 @@
                 <input class="rounded border-0 bg-secondary bg-opacity-25 title my-2 p-2" placeholder="Title" type="text">
                 <div class="my-3">
                     <label>Faculty Members</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Native Select" data-silent-initial-value-set="false">
+                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
                             <option value="1">fullname</option>
                             <option value="2">fullname</option>
                             <option value="3">fullname</option>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="my-3">
                     <label>Type of Faculty</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Native Select" data-silent-initial-value-set="false">
+                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
                             <option value="iteFaculty">ITE Faculty</option>
                             <option value="geFaculty">GE Faculty</option>
                             
@@ -55,7 +55,7 @@
                 </div> 
                 <div class="my-3">
                     <label>Type of Chart/Graph</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Native Select" data-silent-initial-value-set="false">
+                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
                             <option value="pie chart">Pie Chart</option>
                             <option value="Bar Graph">Bar Graph</option>
                            
@@ -63,7 +63,7 @@
                 </div> 
                 <div class="my-3">
                     <label>Other Information</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Native Select" data-silent-initial-value-set="false">
+                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
                             <option value="educationalAttainment">Educational Attainment</option>
                             <option value="academicRank">Academic Rank</option>
                             <option value="appointmentStatus">Appointment Status</option>
