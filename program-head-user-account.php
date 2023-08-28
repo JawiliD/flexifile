@@ -10,6 +10,7 @@
     <title>title</title>
 </head>
 <body>
+    <!-- goods na to -->
 <div class="layout">
     <?php
     // require 'config';
@@ -22,12 +23,12 @@
         <?php
             include 'dashboard.php';
         ?>
-        <div class="user-account-div bg-light mt-3 rounded p-3">
+        <div class="user-account-div bg-light mt-3 pb-5 rounded p-3">
             <h1>User Accounts</h1>
             <hr class="hr"/>
             <div class="input-group d-flex justify-content-end">
                 <input type="search" class="form-control rounded " style="max-width: 10em;" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-">Search</button>
+                <button type="button" class="btn btn-dark">Search</button>
             </div>
             <button type="button" class="btn btn-primary btn-sm btn-modal3 mt-5 float-end py-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add Account
@@ -40,27 +41,32 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                            <div class="row align-items-start mt-2">
-                                        <div class="col w-100">
+                            <div class="row text-start mt-2">
+                                        <div class="col">
                                         <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text data" id="inputGroup-sizing-sm">Full Name:</span>
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Full Name:</span>
                                                 <input type="text" class="form-control">
                                                                 
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text data" id="inputGroup-sizing-sm">Email:</span>
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Email:</span>
                                                 <input type="text" class="form-control">
                                                                 
+                                        </div>                                        
                                         </div>
-                                        <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text data" id="inputGroup-sizing-sm">Password:</span>
-                                                <input type="text" class="form-control">
-                                                                
-                                        </div>
-                                        <ul class="list-group">
+                                        <div class="col">
+                                            <div class="input-group input-group-sm mb-3">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
+                                                <input type="text" class="form-control">                                                                
+                                            </div>                                        
+                                        </div>                                        
+                            </div>
+                            <div class="row text-start">
+                                <div class="col">
+                                    <ul class="list-group">
                                         <h5>User Role</h5>
                                         <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="radio" name="userRole" id="facultyRole">
+                                            <input class="form-check-input" type="radio" name="userRole" id="facultyRole">
                                             <label class="form-check-label" for="facultyRole">Faculty Member</label>
                                         </li>
                                         <li class="list-group-item">
@@ -75,8 +81,8 @@
                                             <input class="form-check-input me-1" type="radio" name="userRole" id="deanRole">
                                             <label class="form-check-label" for="deanRole">Dean</label>
                                         </li>
-                                        </ul>
-                                        </div>
+                                    </ul>
+                                </div>
                             </div>
                             </div>
                             <div class="modal-footer">

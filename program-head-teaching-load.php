@@ -12,6 +12,7 @@
 <body>
 <div class="layout">
     <?php
+    //goods na to
     // require 'config';
     include 'header.php';
     include 'sidebar-program-head.php';   
@@ -22,123 +23,124 @@
         <?php
             include 'dashboard.php';
         ?>
-    </div>
-    <div class="vw-90 ms-3 me-3 p-3 mt-4 rounded first-div container-div2 container-adjust  position-relative">
+        <div class="program-head-teaching mt-3 rounded bg-light p-3 pb-3">
             <h1>Teaching Assignment</h1>
             <hr class="hr"/>
-            <h5>Faculty Members:</h5>
-            <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Faculty Role</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            <div class="row align-items-start mt-2">
-                                <div class="col">
-                                <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Semester:</span>
-                                    <select class="form-select" aria-label="Name">
-                                        <option selected>Semester</option>
-                                        <option value="first_semester"> First Semester</option>
-                                        <option value="second_semester">Second Semester</option>
-                                    </select>
-                                </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Subject Title:</span>
-                                        <select class="form-select" aria-label="Educational Attainment">
-                                            <option selected>Subject Title...</option>
-                                            <option value="subject1">Subject 1</option>
-                                            <option value="subject2">Subject 2</option>
-                                            <option value="subject3">Subject 3</option>
-                                            <option value="subject4">Subject 4</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Number of Units:</span>
-                                        <select class="form-select" aria-label="Appointment Status">
-                                            <option selected>No of Units...</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <button class="btn btn-primary add-btn">Add</button>
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                    <h3>Preview</h3>
-                                     <div class="border rounded mx-auto preview" style="margin-top:5em;">
+            <h5>Faculty Members:</h5> 
+            <div class="table-teaching mt-5 overflow-scroll ">
+            <table class="table table-striped ">
+            <thead class="table-success">
+                <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Faculty Type</th>
+                <th scope="col">Remaining Loads</th>
+                <th scope="col">Remaining Hours</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-secondary">
+                <tr>
+                <th scope="row">1</th>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>
+                    <button class="btn btn-primary  btn-sm"data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td></td>
 
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" >Save</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="table-useraccess overflow-scroll ">
-                            <table class="table table-striped ">
-                            <thead class="table-success">
-                                <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Faculty Type</th>
-                                <th scope="col">Remaining Loads</th>
-                                <th scope="col">Remaining Hours</th>
-                                <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-secondary">
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>
-                                    <button class="btn btn-primary  btn-sm"data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td>Sample</td>
+                <td></td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+            <form action="" method="POST">
+            <div class="custome-margin-preview1">
+                <h3>Preview</h3>
+                <div class="border rounded mx-auto preview mt-5">
 
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td></td>
-                                </tr>
-                            </tbody>
-                            </table>
-                            </div>
-                            <form action="" method="POST">
-                            <div class="custome-margin-preview1">
-                                <h3>Preview</h3>
-                                <div class="border rounded mx-auto preview" style="margin-top:5em;">
-
-                                </div>
-                                
-                                <button class="btn btn-success mt-5 float-end">Generate</button>
-                            </div>
-                        </form>
-
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-success mt-5">Generate</button>
+                </div>                               
+             </div>                            
+        </form>
+        <hr>
     </div>
+    </div>
+    <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Faculty Role</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row align-items-start mt-2">
+                    <div class="col">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Semester:</span>
+                        <select class="form-select" aria-label="Name">
+                            <option selected>Semester</option>
+                            <option value="first_semester"> First Semester</option>
+                            <option value="second_semester">Second Semester</option>
+                        </select>
+                    </div>
+                         <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Subject Title:</span>
+                            <select class="form-select" aria-label="Educational Attainment">
+                                <option selected>Subject Title...</option>
+                                <option value="subject1">Subject 1</option>
+                                <option value="subject2">Subject 2</option>
+                                <option value="subject3">Subject 3</option>
+                                <option value="subject4">Subject 4</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="col">
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Number of Units:</span>
+                            <select class="form-select" aria-label="Appointment Status">
+                                <option selected>No of Units...</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-primary add-btn">Add</button>
+                </div>
+                <h3>Preview</h3>
+                <div class="border rounded preview mt-3" >
+
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" >Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
 
 

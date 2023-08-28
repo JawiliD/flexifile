@@ -12,6 +12,7 @@
 <body>
 <div class="layout">
     <?php
+    //goods na to
     // require 'config';
     include 'header.php';
     include 'sidebar-program-head.php';   
@@ -22,83 +23,54 @@
         <?php
             include 'dashboard.php';
         ?>
-    </div>
-    <div class="vw-90 ms-3 me-3 p-3 mt-4 rounded first-div container-div1 container-adjust position-relative">
+        <div class="program-head-calendar mt-3 bg-light rounded pb-3 p-3 position-relative">
             <h1>Academic Year/Semester</h1>
             <hr class="hr"/>
             
-            <button type="button" class="btn btn-secondary btn-lg btn-modal5 py-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-dark btn-lg btn-modal5 py-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         SET
             </button>
             <div class="position-absolute ms-3 p-3 set-div rounded ">
             <h5 class="text-black">Academic Semester History Log</h5>
             <hr class="hr"/>
-            </div>
-            <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">SET</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <ul>
+                <li class="border-bottom">sample</li>
+                <li class="border-bottom">sample</li>
+                <li class="border-bottom">sample</li>
+                <li class="border-bottom">sample</li>
+            </ul>
+            </div>           
+                <div class="contianer-calendar  mt-5 ">
+                    <div class="calendar">
+                        <div class="calendar-header bg-secondary">
+                            <span class="month-picker" id="month-picker"> May </span>
+                            <div class="year-picker" id="year-picker">
+                                <span class="year-change" id="pre-year">
+                                <pre><</pre>
+                                </span>
+                                <span id="year">2020 </span>
+                                <span class="year-change" id="next-year">
+                                <pre>></pre>
+                                </span>
                             </div>
-                            <div class="modal-body">
-                            <div class="row align-items-start mt-2">
-                                        <div class="col">
-                                        <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Title:</span>
-                                                <input type="text" class="form-control">
-                                                                
-                                        </div>
-                                        <h5>Date</h5>
-                                        <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
-                                                <input type="text" class="form-control">
-                                                <span class="mx-2"></span>
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                                <input type="text" class="form-control">
-                                                                
-                                        </div>
-                                        </div>
-                            </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" >Save</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="contianer-calendar position-absolute mt-5 ">
-                            <div class="calendar">
-                                <div class="calendar-header bg-secondary">
-                                <span class="month-picker" id="month-picker"> May </span>
-                                <div class="year-picker" id="year-picker">
-                                    <span class="year-change" id="pre-year">
-                                    <pre><</pre>
-                                    </span>
-                                    <span id="year">2020 </span>
-                                    <span class="year-change" id="next-year">
-                                    <pre>></pre>
-                                    </span>
-                                </div>
-                                </div>
+                        </div>
                         
-                                <div class="calendar-body">
-                                <div class="calendar-week-days">
-                                    <div>Sun</div>
-                                    <div>Mon</div>
-                                    <div>Tue</div>
-                                    <div>Wed</div>
-                                    <div>Thu</div>
-                                    <div>Fri</div>
-                                    <div>Sat</div>
-                                </div>
-                                <div class="calendar-days">
-                                </div>
-                                </div>
-                                <div class="calendar-footer">
-                                </div>
-                                <div class="date-time-formate">
+                        <div class="calendar-body">
+                            <div class="calendar-week-days">
+                                <div>Sun</div>
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                            </div>
+                            <div class="calendar-days">
+                            </div>
+                        </div>
+                        <div class="calendar-footer">
+                        </div>
+                            <div class="date-time-formate">
                                 <div class="day-text-formate">TODAY</div>
                                 <div class="date-time-value">
                                     <div class="time-formate">02:51:20</div>
@@ -107,9 +79,45 @@
                                 </div>
                                 <div class="month-list"></div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+    <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">SET</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="row align-items-start mt-2">
+            <div class="col">
+            <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Title:</span>
+                    <input type="text" class="form-control">
+                                                                
                             </div>
-                            
-                            <script>
+                            <h5>Date</h5>
+                            <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
+                                    <input type="text" class="form-control">
+                                    <span class="mx-2"></span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
+                                    <input type="text" class="form-control">
+                                                    
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" >Save</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
                             const isLeapYear = (year) => {
                             return (
                             (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
@@ -264,14 +272,8 @@
                             '0'
                             )}: ${`${timer.getSeconds()}`.padStart(2, '0')}`;
                             todayShowTime.textContent = formateTimer;
-                        }, 1000);
-                        
-
-                            </script>
-                            
-                            
-
-    </div>
+                        }, 1000);                       
+</script>
 
 
     

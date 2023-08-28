@@ -12,12 +12,13 @@
     <title>title</title>
 </head>
 <body>
-    <div class="mt-3 p-3 rounded sixteen-div position-absolute"s style="height:50em; width:95%;">
+    <!-- goods na to -->
+    <div class="mt-3 p-3 rounded sixteen-div position-absolute bg-light"s style="height:50em; width:95%;">
             <h1>Faculty Attachment Files</h1>
             <hr class="hr"/>
             <div class="input-group d-flex justify-content-end">
                 <input type="search" class="form-control rounded " style="max-width: 10em;" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-secondary">search</button>
+                <button type="button" class="btn btn-dark">search</button>
             </div>
             <div class="mt-5">
                 

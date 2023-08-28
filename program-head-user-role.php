@@ -12,6 +12,7 @@
 <body>
 <div class="layout">
     <?php
+    // goods na to
     // require 'config';
     include 'header.php';
     include 'sidebar-program-head.php';   
@@ -22,13 +23,12 @@
         <?php
             include 'dashboard.php';
         ?>
-    </div>
-    <div class="vw-90 ms-3 me-3 p-3 mt-4 rounded first-div container-div container-adjust position-relative">
+        <div class="user-access-div bg-light mt-3 pb-5 rounded p-3">
             <h1>User Access</h1>
             <hr class="hr"/>
-            <div class="input-group d-flex justify-content-end">
+            <div class="input-group d-flex justify-content-end mt-5">
                 <input type="search" class="form-control rounded " style="max-width: 10em;" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-secondary">Search</button>
+                <button type="button" class="btn btn-dark">Search</button>
             </div>
             <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -38,6 +38,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                            <p>Role: </p>
                             <div class="row align-items-start mt-2">
                                         <div class="col">
                                         <ul class="list-group">
@@ -56,11 +57,7 @@
                                         <li class="list-group-item">
                                             <input class="form-check-input me-1" type="radio" name="userRole" id="deanRole">
                                             <label class="form-check-label" for="deanRole">Dean</label>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="radio" name="userRole" id="deanRole">
-                                            <label class="form-check-label" for="deanRole">Administrator</label>
-                                        </li>
+                                        </li>                                        
                                         </ul>
                                         </div>
                             </div>
@@ -77,10 +74,8 @@
                             <thead class="table-success">
                                 <tr>
                                 <th scope="col">No.</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col">Name</th>                                
+                                <th scope="col">Role</th>                                
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -88,9 +83,7 @@
                                 <tr>
                                 <th scope="row">1</th>
                                 <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
+                                <td>Sample</td>                                
                                 <td>
                                     <button class="btn btn-primary  btn-sm"data-bs-toggle="modal" data-bs-target="#exampleModal">Change</button>
                                 </td>
@@ -98,18 +91,13 @@
                                 <tr>
                                 <th scope="row">2</th>
                                 <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
+                                <td>Sample</td>                                
                                 <td></td>
-
                                 </tr>
                                 <tr>
                                 <th scope="row">3</th>
                                 <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
+                                <td>Sample</td>                                
                                 <td></td>
                                 </tr>
                             </tbody>
@@ -120,6 +108,8 @@
 
 
 
+    </div>
+    
 
 
 </body>

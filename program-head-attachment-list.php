@@ -13,10 +13,11 @@
 </head>
 <body>
 <div class="layout">
-    <?php
+    <?
+    //goods na to
     // require 'config';
     include 'header.php';
-    include 'sidebar-faculty-program-head.php';   
+    include 'sidebar-program-head.php';   
     ?>
     </div>
     <div class="content position-relative">
