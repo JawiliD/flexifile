@@ -22,15 +22,14 @@
         <?php
             include 'dashboard.php';
         ?>
-    </div>
-    <div class="vw-90 ms-3 me-3 p-3 mt-4 rounded first-div container-div container-adjust position-relative">
+        <div class="user-account-div bg-light mt-3 rounded p-3">
             <h1>User Accounts</h1>
             <hr class="hr"/>
             <div class="input-group d-flex justify-content-end">
                 <input type="search" class="form-control rounded " style="max-width: 10em;" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-secondary">Search</button>
+                <button type="button" class="btn btn-">Search</button>
             </div>
-            <button type="button" class="btn btn-primary btn-sm btn-modal3 py-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-sm btn-modal3 mt-5 float-end py-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add Account
             </button>
             <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -42,19 +41,19 @@
                             </div>
                             <div class="modal-body">
                             <div class="row align-items-start mt-2">
-                                        <div class="col">
+                                        <div class="col w-100">
                                         <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Full Name:</span>
+                                                <span class="input-group-text data" id="inputGroup-sizing-sm">Full Name:</span>
                                                 <input type="text" class="form-control">
                                                                 
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Email:</span>
+                                                <span class="input-group-text data" id="inputGroup-sizing-sm">Email:</span>
                                                 <input type="text" class="form-control">
                                                                 
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
+                                                <span class="input-group-text data" id="inputGroup-sizing-sm">Password:</span>
                                                 <input type="text" class="form-control">
                                                                 
                                         </div>
@@ -130,6 +129,8 @@
                             </div>
 
     </div>
+    </div>
+    
 
 
 
