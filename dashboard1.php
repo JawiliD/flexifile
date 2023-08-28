@@ -17,8 +17,8 @@
                             <table class="table">
                                 <tbody>
                                     <tr><td class="border-0"><h2 class="text-center">Faculty Profile Status</h2></td></tr>
-                                    <tr><td class="border-0"><h4>Last time updated:</h4></td></tr>
-                                    <tr><td class="border-0 text-center"> <button type="button" class="btn btn-success">See Profile >>></button></td></tr>
+                                    <tr><td class="border-0"><h4>Last time updated:</h4></td></tr>                                    
+                                    <tr><td class="border-0 text-center"><?php echo '<a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="'.$link.'">See PDS>></a>'; ?></td></tr>
                                 </tbody>
                             </table>                         
                         </div>
@@ -36,7 +36,7 @@
                                     </div>
                                     </td></tr>
                                     <tr><td class="border-0"></td></tr>
-                                    <tr><td class="border-0 text-center"><button type="button" class="btn btn-success">See Files >>></button></td></tr>
+                                    <tr><td class="border-0 text-center"><?php echo '<a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="'.$link2.'">See Files>></a>'; ?></td></tr>
                                 </tbody>
                             </table> 
                         </div>

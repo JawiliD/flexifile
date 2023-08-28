@@ -15,11 +15,11 @@
                 <img class="position-absolute side-img" src="img/sidebar.png"> 
                 <div class="z-2 position-absolute side-nav">
                 <ul class="nav flex-column">                    
-                    <li class="py-2 nav-item active">
-                        <a class="active" href="#">Home</a>
+                    <li class="py-2 nav-item" style="border-bottom: 3px solid #235128;border-top: 3px solid #235128;">
+                        <a href="home-leader.php">Home</a>
                     </li>
                     <li class="py-2 nav-item" style="border-bottom: 3px solid #235128;">
-                        <a href="#">Reports</a>
+                        <a href="report-dynamic.php">Reports</a>
                     </li>                    
                     
                 </ul>

@@ -15,6 +15,8 @@
     <div class="content">
         <!-- start coding here -->
         <?php
+         $link = 'member-profile.php'; 
+         $link2 = 'member-attachment-list.php'; 
         include 'dashboard.php';
         include 'dashboard1.php';    
         ?>

@@ -12,20 +12,7 @@
     <title>title</title>
 </head>
 <body>
-<div class="layout">
-    <?php
-    // require 'config';
-    include 'header.php';
-    include 'sidebar-faculty-member.php';    
-    ?>
-    </div>
-    <div class="content">
-        <!-- start coding here -->
-        <?php
-            include 'dashboard.php';
-        ?>
-    </div>
-    <div class="vw-90 ms-3 me-3 p-3 mt-4 rounded first-div container-div container-adjust position-relative">
+    <div class="mt-3 p-3 rounded sixteen-div position-absolute"s style="height:50em; width:95%;">
             <h1>Faculty Attachment Files</h1>
             <hr class="hr"/>
             <div class="input-group d-flex justify-content-end">
@@ -33,25 +20,105 @@
                 <button type="button" class="btn btn-secondary">search</button>
             </div>
             <div class="mt-5">
-                <h5 class="mt-5 sort-top" >Sort By:</h5>
-                    <div class="dropdown btn-dropdown">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Research
-                    </button>
-                    <ul class="dropdown-menu ">
-                        <li><a class="dropdown-item" href="#">Education</a></li>
-                        <li><a class="dropdown-item" href="#">Trainings</a></li>
-                        <li><a class="dropdown-item" href="#">Seminar</a></li>
-                        <li><a class="dropdown-item" href="#">Certification</a></li>
-                        <li><a class="dropdown-item" href="#">others</a></li>
-                    </ul>
+                
+                    <div class="container text-center">
+                    <div class="row align-items-start">
+                    <div class="col mt-5">
+                    <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Sort by:</span>
+                            <select class="form-select" aria-label="Name">
+                            <option selected>Research..</option>
+                            <option value="name">Name</option>
+                            <option value="name">Name</option>
+                            <option value="name">Name</option>
+                            <option value="name">Name</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
                     </div>
                     <button type="button" class="btn btn-secondary btn-sm btn-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         filter
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm btn-modal2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary btn-sm btn-modal2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Upload
                     </button>
+
+                    <div class="mt-4 sixteen-table overflow-scroll" style="height:20em; width:100%;">
+                            <table class="table table-striped mt-5 ">
+                            <thead class="table-success">
+                                <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Type of Document</th>
+                                <th scope="col">Attachment</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-secondary">
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                            </div>
+                            
+
                     <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -108,48 +175,7 @@
                             </div>
                             </div>
                             </div>
-                            <div class="table-facultymember overflow-scroll ">
-                            <table class="table table-striped ">
-                            <thead class="table-success">
-                                <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Type of Document</th>
-                                <th scope="col">Attachment</th>
-                                <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-secondary">
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                </tr>
-                            </tbody>
-                            </table>
-                            </div>
-                            
+                         
                             
                             
                             

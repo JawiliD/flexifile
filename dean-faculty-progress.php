@@ -14,7 +14,6 @@
 <body>
 <div class="layout">
     <?php
-    // require 'config';
     include 'header.php';
     include 'sidebar-dean.php';    
     ?>

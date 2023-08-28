@@ -15,8 +15,8 @@
                 <img class="position-absolute side-img" src="img/sidebar.png"> 
                 <div class="z-2 position-absolute side-nav">
                 <ul class="nav flex-column">
-                    <li class="py-2 nav-item active" style="border-bottom: 3px solid #235128;">
-                        <a class="active" aria-current="page" href="#">Home</a>
+                    <li class="py-2 nav-item active" style="border-bottom: 3px solid #235128;border-top: 3px solid #235128;">
+                        <a href="home-member.php">Home</a>
                     </li>                   
                 </ul>
             </div>

@@ -192,6 +192,7 @@ body{
     overflow: auto;
   }
 
+
   /* welcome page */
 .logo2{
     margin-top: 40px;
@@ -325,7 +326,14 @@ body{
     width: 100%;
 }
 
-/*faculty member-faculty*/
+/*faculty PDS*/
+
+.profile-pds{
+  background-color: rgba(255, 255, 255, 0.826);
+}
+
+
+
 .nav-link-info{
     text-decoration: none;
     font-weight: bold;
@@ -376,6 +384,9 @@ top: 218em;
 .container-div{
     height:40em;
 }
+.container-div2{
+  height:100em;
+}
 .btn-dropdown{
     position: absolute;
     left: 7em;
@@ -384,14 +395,14 @@ top: 218em;
 .btn-modal{
     position: absolute;
     left: 17em;
-    top: 17.7em;
+    top: 16.5em;
     padding-left: 2em;
     padding-right: 2em;
 }
 .btn-modal2{
     position: absolute;
     left: 65em;
-    top: 17.7em;
+    top: 16.5em;
     padding-left: 2em;
     padding-right: 2em;
 }
@@ -409,7 +420,7 @@ top: 218em;
 
 .table-facultymember{
     height: 13em;
-    margin-top: 15em;
+    margin-top: 6em;
 }
 /*program-head-set-academic*/
 .btn-modal5{
@@ -756,9 +767,58 @@ label{
 
 .thirteen-div{
     background-color: rgba(255, 255, 255, 0.826);
-    height:100em;
+    height:120em;
 }
 .preview{
     width: 45em;
     height: 30em;
 }
+.custome-margin-preview{
+  margin-top: 10em;
+}
+/*report-educ-attain*/
+.position-educ{
+  margin-top: 9em;
+}
+/*report-research-profile-profile*/
+.text-profile{
+  background-color: #f2f2f2;
+  border: 1px solid #ccc; 
+  padding: 10px;
+  border-radius: 5px;
+  width: 4em;
+}
+.text-width{
+  width: 6.7em;
+}
+/*report-research-profile-publication*/
+.width-pub{
+  width: 6em;
+}
+.width-act{
+  width: 5.2em;
+}
+/*report-dev-plan*/
+.custome-margin-preview1{
+  margin-top: 5em;
+}
+/*program-head-teaching-load*/
+.add-btn{
+  margin-left: 30em;
+}
+/*faculty-attachment-files*/
+.fifteen-div{
+  background-color: rgba(255, 255, 255, 0.826);
+  height:35em;
+}
+.input-group-sm {
+  max-width: 13em; 
+}
+/*leader-notif*/
+
+.notif-div {
+  background-color: rgba(255, 255, 255, 0.826);
+    height:40em;
+}
+
+/* profile */

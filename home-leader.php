@@ -19,8 +19,12 @@
     <div class="content" style="width:65vw">
         <!-- start coding here -->
         <?php
+         $link = 'leader-profile.php'; 
+         $link2 = 'leader-attachment-list.php'; 
         include 'dashboard.php';
-        include 'dashboard1.php';   
+        include 'dashboard2.php'; 
+        include 'dashboard1.php';  
+          
         ?>
         <div class="eleven-div p-3 rounded mt-3 position-relative">
             <div class="container text-center p-2">
@@ -38,15 +42,40 @@
                 </div>
                 <div class="row pt-4">
                     <div class="col">
-                    <button class="btn btn-success">See Folders >></button>
+                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  See Folders>>
+</button>
                     </div>
                     <div class="col">
-                    <button class="btn btn-success">See Files >></button>
+                    <a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="faculty-attachment-files.php">See Files>></a>
                     </div>                                 
                 </div>
             </div>           
         </div>
+        <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h1>hi</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     </div>
+
+
+
+
 </body>
 </html>

@@ -20,7 +20,7 @@
                 </ul>
             </div>
             <hr>
-            <button class="btn btn-success">View Updates >></button>
+            <a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="leader-notif-page.php">View Updates>></a>
         </div>
 
     </div>

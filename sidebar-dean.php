@@ -15,15 +15,19 @@
                 <img class="position-absolute side-img" src="img/sidebar.png"> 
                 <div class="z-2 position-absolute side-nav">
                 <ul class="nav flex-column">                    
-                    <li class="py-2 nav-item active">
-                        <a href="#">Home</a>
+                    <li class="py-2 nav-item" style="border-bottom: 3px solid #235128;border-top: 3px solid #235128;">
+                        <a href="home-dean.php">Home</a>
                     </li>
                     <li class="py-2 nav-item" style="border-bottom: 3px solid #235128;">
-                        <a href="#">Faculty Progress</a>
+                        <a href="dean-faculty-progress.php">Faculty Progress</a>
                     </li>
                     <li class="py-2 nav-item" style="border-bottom: 3px solid #235128;">
-                        <a href="#">Assignation</a>
-                    </li>                                        
+                        <a href="dean-teaching-load.php">Teaching Assignation</a>
+                    </li> 
+                    <li class="py-2 nav-item" style="border-bottom: 3px solid #235128;">
+                        <a href="dean-faculty-role.php">Role Assignation</a>
+                    </li>   
+                                                         
                 </ul>
             </div>
         </div>

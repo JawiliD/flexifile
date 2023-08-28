@@ -6,22 +6,22 @@
             <nav class="navbar navbar-expand-lg navbar-light">                
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Dynamic Report</a>
+                    <a class="nav-link" href="report-dynamic.php">Dynamic Report</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Educational Attainment & Academic Rank</a>
+                    <a class="nav-link" href="report-educ-attain.php">Educational Attainment & Academic Rank</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Appoint Status</a>
+                    <a class="nav-link" href="report-appointment-status.php">Appoint Status</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Teaching Assignment</a>
+                    <a class="nav-link" href="report-teaching-assignment.php">Teaching Assignment</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Work Experience</a>
+                    <a class="nav-link" href="report-work-experience.php">Work Experience</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Professional Organization </a>
+                    <a class="nav-link" href="report-member-prof-org.php">Professional Organization </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,17 +29,17 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="report-research-profile-profile.php">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Presentation</a></li>
+                            <li><a class="dropdown-item" href="report-research-profile-presentation.php">Presentation</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Publication</a></li>
+                            <li><a class="dropdown-item" href="report-research-profile-publication.php">Publication</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Activities</a></li>
+                            <li><a class="dropdown-item" href="report-research-profile-activity.php">Activities</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Faculty Development Plan</a>
+                    <a class="nav-link" href="report-faculty-dev-plan.php">Faculty Development Plan</a>
                     </li>
                 </ul>
             </nav>

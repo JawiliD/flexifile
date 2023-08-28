@@ -15,9 +15,12 @@
     <div class="content">
         <!-- start coding here -->
         <?php
+        $link = 'dean-profile.php'; 
+        $link2 = 'dean-attachment-list.php'; 
         include 'dashboard.php';
         include 'dashboard2.php';
-        include 'dashboard1.php';    
+        include 'dashboard1.php'; 
+         
         ?>
         <div class="mt-3 rounded nine-div">
             <div class="nine-div-container p-3 text-start">

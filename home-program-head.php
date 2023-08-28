@@ -15,6 +15,8 @@
     <div class="content">
         <!-- start coding here -->
         <?php
+         $link = 'program-head-profile.php'; 
+         $link2 = 'program-head-attachment-list.php'; 
         include 'dashboard.php';
         include 'dashboard2.php';
         include 'dashboard1.php';    

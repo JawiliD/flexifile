@@ -76,15 +76,16 @@
                 <button class="mt-5 btn btn-primary float-end">ADD</button>
                 <h3 class="my-4">Preview</h3>
                 <div class="border rounded mx-auto preview" style="margin-top:5em;">
-
                 </div>
                 <button class="btn btn-success mt-5 float-end">Generate</button>
+                
             </form>   
             </div>
             <hr>
             <div class="fourteen-div">
                 
             </div>
+
              
        
 
@@ -94,6 +95,14 @@
             VirtualSelect.init({ 
             ele: '#multi_option' 
             });
+
+            
+        </script>
+        <script>
+           document.getElementById("printButton").addEventListener("click", function() {
+            
+            window.print();
+        });
         </script>
 
 </body>
