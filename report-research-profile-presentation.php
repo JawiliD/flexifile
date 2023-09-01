@@ -14,6 +14,7 @@
 <body>
 <div class="layout">
     <?php
+    //goods na to
     include 'header.php';
     include 'sidebar-faculty-leader.php'; 
     include 'dashboard-notif.php';
@@ -27,53 +28,48 @@
         <?php
         include 'dashboard.php';          
         include 'dashboard-nav.php';          
-        ?> 
-        
-            <div class="mt-3 p-3 thirteen-div">
-                <h3>Faculty base on Research Presentation</h3>               
-                <hr>
+        ?>         
+        <div class="mt-3 p-3 thirteen-div rounded">
+            <h3>Faculty base on Research Presentation</h3>               
+            <hr>
             <form action="" method="POST">
                 <div class="my-3">
                     <label>Title of Paper</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="title_1">Title</option>
-                            <option value="title_2">Title</option>
-                            <option value="title_3">Title</option>
-                            <option value="title_4">Title</option>
-                            <option value="title_5">Title</option>
-                            <option value="title_6">Title</option>
-                        </select>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="title_1">Title</option>
+                        <option value="title_2">Title</option>
+                        <option value="title_3">Title</option>
+                        <option value="title_4">Title</option>
+                        <option value="title_5">Title</option>
+                        <option value="title_6">Title</option>
+                    </select>
                 </div>
                 <div class="my-3">
                     <label>Type of Chart/Graph</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="pie chart">Pie Chart</option>
-                            <option value="Bar Graph">Bar Graph</option>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="pie chart">Pie Chart</option>
+                        <option value="Bar Graph">Bar Graph</option>
                            
-                        </select>
+                    </select>
                 </div> 
-                <div>
-                <button class="mt-5 btn btn-primary float-end">ADD</button>
+                <div class="text-end">
+                    <button class="mt-5 btn btn-primary float-end">ADD</button>
                 </div>
-                <div class="custome-margin-preview">
+                <div class="mt-5">
                     <h3>Preview</h3>
-                    <div class="border rounded mx-auto preview" style="margin-top:5em;">
+                    <div class="border rounded mx-auto mt-3 preview" style="margin-top:5em;">
 
                     </div>
-                    <button class="btn btn-success mt-5 float-end">Generate</button>
+                    <div class="text-end">
+                        <button class="btn btn-success mt-3">Generate</button>
+                    </div>                    
                 </div>
-                
-                
             </form>   
-            </div>
-            <hr>
-            <div class="fourteen-div">
+        </div>
+        <hr>
+        <div class="report-preview">
                 
-            </div>
-
-             
-       
-
+        </div>
     </div>
     <script type="text/javascript" src="js/virtual-select.min.js"></script>
         <script type="text/javascript">

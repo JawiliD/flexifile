@@ -349,20 +349,6 @@ body{
     left: 7em;
     top: 15.5em;
 }
-.btn-modal{
-    position: absolute;
-    left: 17em;
-    top: 16.5em;
-    padding-left: 2em;
-    padding-right: 2em;
-}
-.btn-modal2{
-    position: absolute;
-    left: 65em;
-    top: 16.5em;
-    padding-left: 2em;
-    padding-right: 2em;
-}
 
 .sort-top{
     top: 10em;
@@ -378,7 +364,7 @@ body{
     padding-right: 2em;
 }
 /*tables*/
-.table-useraccount, .table-useraccess, .table-facultymember{
+.table-useraccount, .table-useraccess, .table-facultymember, .table-deanprogress{
     height: 20em;
     margin-top: 10em;
 }
@@ -392,18 +378,6 @@ body{
     top: 7em;
 }
 
-/*dean-faculty-progress*/
-.btn-modal4{
-    position: absolute;
-    left: 63em;
-    top: 10em;
-    padding-left: 2em;
-    padding-right: 2em;
-}
-.table-deanprogress{
-    height: 13em;
-    margin-top: 10em;
-}
 /*calendar- program-head-set-academic-school-year*/
 .contianer-calendar {
     width: max-content;
@@ -715,44 +689,14 @@ label{
     width: 100%;
     height: 30em;
 }
-.custome-margin-preview{
-  margin-top: 10em;
-}
-/*report-educ-attain*/
-.position-educ{
-  margin-top: 9em;
-}
-/*report-research-profile-profile*/
-.text-profile{
-  background-color: #f2f2f2;
-  border: 1px solid #ccc; 
-  padding: 10px;
-  border-radius: 5px;
-  width: 4em;
-}
-.text-width{
-  width: 6.7em;
-}
-/*report-research-profile-publication*/
-.width-pub{
-  width: 6em;
-}
-.width-act{
-  width: 5.2em;
-}
-/*report-dev-plan*/
-.custome-margin-preview1{
-  margin-top: 5em;
-}
-/*program-head-teaching-load*/
 
 /*faculty-attachment-files*/
 .fifteen-div{
   background-color: rgba(255, 255, 255, 0.826);
-  height:35em;
+  height:40em;
 }
 .input-group-sm {
-  max-width: 13em; 
+  max-width: 100%; 
 }
 /*leader-notif*/
 
@@ -761,4 +705,3 @@ label{
     height:40em;
 }
 
-/* profile */

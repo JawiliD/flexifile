@@ -52,14 +52,12 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Email:</span>
                                                 <input type="text" class="form-control">
                                                                 
+                                        </div> 
+                                        <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
+                                            <input type="text" class="form-control">                                                                
                                         </div>                                        
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
-                                                <input type="text" class="form-control">                                                                
-                                            </div>                                        
-                                        </div>                                        
+                                    </div>                                        
                             </div>
                             <div class="row text-start">
                                 <div class="col">

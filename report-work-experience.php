@@ -28,10 +28,9 @@
         include 'dashboard.php';          
         include 'dashboard-nav.php';          
         ?> 
-        
-            <div class="mt-3 p-3 thirteen-div">
-                <h3>Faculty based on Work Experience</h3>
-                <hr>
+        <div class="mt-3 p-3 thirteen-div rounded">
+            <h3>Faculty based on Work Experience</h3>
+            <hr>
             <form action="" method="POST">
                 <div class="my-3">
                     <label>Faculty Members</label>
@@ -53,28 +52,24 @@
                             <option value="part_time">Part Time</option>
                         </select>
                 </div>
-                <div>
-                <button class="mt-5 btn btn-primary float-end">ADD</button>
+                <div class="text-end">
+                    <button class="mt-5 btn btn-primary">Add</button>
                 </div>
-                <div class="custome-margin-preview">
+                <div class="mt-5">
                     <h3>Preview</h3>
-                    <div class="border rounded mx-auto preview" style="margin-top:5em;">
+                    <div class="border rounded mx-auto mt-3 preview" style="margin-top:5em;">
 
                     </div>
-                    <button class="btn btn-success mt-5 float-end">Generate</button>
-                </div>
-                
-                
+                    <div class="text-end">
+                        <button class="btn btn-success mt-3">Generate</button>
+                    </div>                    
+                </div> 
             </form>   
-            </div>
-            <hr>
-            <div class="fourteen-div">
+        </div>
+        <hr>
+        <div class="report-preview">
                 
-            </div>
-
-             
-       
-
+        </div>
     </div>
     <script type="text/javascript" src="js/virtual-select.min.js"></script>
         <script type="text/javascript">

@@ -13,6 +13,7 @@
 <body>
 <div class="layout">
     <?php
+    // goods na to
     include 'header.php';
     include 'sidebar-faculty-leader.php'; 
     include 'dashboard-notif.php';
@@ -28,25 +29,26 @@
         include 'dashboard-nav.php';          
         ?> 
         
-            <div class="mt-3 p-3 thirteen-div">
-                <h3>Faculty Members per Educational Attainment</h3>
-                <hr>
+        <div class="mt-3 p-3 thirteen-div rounded">
+            <h3>Faculty Members per Educational Attainment</h3>
+            <hr>
             <form action="" method="POST">
-            <div class="table-useraccess overflow-scroll ">
-                            <table class="table table-striped ">
-                            <thead class="table-success">
-                                <tr>
+            <h5>Faculty Members</h5>
+                <div class="table-useraccess mt-5 overflow-scroll ">
+                    <table class="table table-striped ">
+                        <thead class="table-success">
+                            <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">Date Issued</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Activity</th>
                                 <th scope="col">Deadline</th>
                                 <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-secondary">
-                                <tr>
-                                <th scope="row">1</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-secondary">
+                            <tr>
+                                <td scope="row">1</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
@@ -54,56 +56,41 @@
                                 <td>
                                     <button class="btn btn-primary  btn-sm"data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
                                 </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
+                            </tr>
+                            <tr>
+                                <td scope="row">2</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td></td>
-
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
+                            </tr>
+                            <tr>
+                                <td scope="row">3</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td></td>
-                                </tr>
-                            </tbody>
-                            </table>
-                            </div>
-            </form>
-            <form action="" method="POST">
-                <div class="custome-margin-preview1">
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-5">
                     <h3>Preview</h3>
-                    <div class="border rounded mx-auto preview" style="margin-top:5em;">
+                    <div class="border rounded mx-auto mt-3 preview" style="margin-top:5em;">
 
                     </div>
-                    <button class="btn btn-success mt-5 float-end">Generate</button>
+                    <div class="text-end">
+                        <button class="btn btn-success mt-3">Generate</button>
+                    </div>                    
                 </div>
             </form>
-            
-            
-
-
-
-
-
-
-
-
-            </div>
-            <hr>
-            <div class="fourteen-div">
+        </div>
+        <hr>
+        <div class="report-preview">
                 
-            </div>
-
-             
-       
-
+        </div>
     </div>
     <script type="text/javascript" src="js/virtual-select.min.js"></script>
         <script type="text/javascript">

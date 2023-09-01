@@ -13,6 +13,7 @@
 <body>
 <div class="layout">
     <?php
+    //goods na to
     include 'header.php';
     include 'sidebar-faculty-leader.php'; 
     include 'dashboard-notif.php';
@@ -28,63 +29,67 @@
         include 'dashboard-nav.php';          
         ?> 
         
-            <div class="mt-3 p-3 thirteen-div">
-                <h3> Dynamic Report</h3>
-                <hr>
+        <div class="mt-3 p-3 thirteen-div rounded">
+            <h3> Dynamic Report</h3>
+            <hr>
             <form action="" method="POST">
                 <label>Title</label>
                 <input class="rounded border-0 bg-secondary bg-opacity-25 title my-2 p-2" placeholder="Title" type="text">
                 <div class="my-3">
                     <label>Faculty Members</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="1">fullname</option>
-                            <option value="2">fullname</option>
-                            <option value="3">fullname</option>
-                            <option value="4">fullname</option>
-                            <option value="5">fullname</option>
-                            <option value="6">fullname</option>
-                        </select>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="1">fullname</option>
+                        <option value="2">fullname</option>
+                        <option value="3">fullname</option>
+                        <option value="4">fullname</option>
+                        <option value="5">fullname</option>
+                        <option value="6">fullname</option>
+                    </select>
                 </div>
                 <div class="my-3">
                     <label>Type of Faculty</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="iteFaculty">ITE Faculty</option>
-                            <option value="geFaculty">GE Faculty</option>
-                            
-                        </select>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="iteFaculty">ITE Faculty</option>
+                        <option value="geFaculty">GE Faculty</option>                        
+                    </select>
                 </div> 
                 <div class="my-3">
                     <label>Type of Chart/Graph</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="pie chart">Pie Chart</option>
-                            <option value="Bar Graph">Bar Graph</option>
-                           
-                        </select>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="pie chart">Pie Chart</option>
+                        <option value="Bar Graph">Bar Graph</option>    
+                    </select>
                 </div> 
                 <div class="my-3">
                     <label>Other Information</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="educationalAttainment">Educational Attainment</option>
-                            <option value="academicRank">Academic Rank</option>
-                            <option value="appointmentStatus">Appointment Status</option>
-                            <option value="professionalOrganization">Professional Organization</option>
-                            <option value="researchArea">Research Area</option>
-                            <option value="paper Presented">Paper Presented</option>
-                            <option value="researchPublished">Research Published</option>
-                        </select>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="educationalAttainment">Educational Attainment</option>
+                        <option value="academicRank">Academic Rank</option>
+                        <option value="appointmentStatus">Appointment Status</option>
+                        <option value="professionalOrganization">Professional Organization</option>
+                        <option value="researchArea">Research Area</option>
+                        <option value="paper Presented">Paper Presented</option>
+                        <option value="researchPublished">Research Published</option>
+                    </select>
                 </div>
-                <button class="mt-5 btn btn-primary float-end">ADD</button>
-                <h3 class="my-4">Preview</h3>
-                <div class="border rounded mx-auto preview" style="margin-top:5em;">
+                <div class="text-end">
+                    <button class="mt-5 btn btn-primary">Add</button>
+                </div>                
+                <div class="mt-5">
+                    <h3>Preview</h3>
+                    <div class="border rounded mx-auto mt-3 preview" style="margin-top:5em;">
+
+                    </div>
+                    <div class="text-end">
+                        <button class="btn btn-success mt-3">Generate</button>
+                    </div>                    
                 </div>
-                <button class="btn btn-success mt-5 float-end">Generate</button>
-                
             </form>   
-            </div>
-            <hr>
-            <div class="fourteen-div">
+        </div>
+        <hr>
+        <div class="report-preview">
                 
-            </div>
+        </div>
 
              
        

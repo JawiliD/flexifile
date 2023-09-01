@@ -111,9 +111,7 @@
                                 <option value="subject3">Subject 3</option>
                                 <option value="subject4">Subject 4</option>
                             </select>
-                        </div> 
-                    </div>
-                    <div class="col">
+                        </div>                     
                         <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Number of Units:</span>
                             <select class="form-select" aria-label="Appointment Status">

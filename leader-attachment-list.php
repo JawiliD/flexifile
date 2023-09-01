@@ -14,6 +14,7 @@
 <body>
 <div class="layout">
     <?php
+    // goods na to
     // require 'config';
     include 'header.php';
     include 'sidebar-faculty-leader.php';   

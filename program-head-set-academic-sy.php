@@ -90,23 +90,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <div class="row align-items-start mt-2">
-            <div class="col">
-            <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Title:</span>
-                    <input type="text" class="form-control">
-                                                                
-                            </div>
-                            <h5>Date</h5>
-                            <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
-                                    <input type="text" class="form-control">
-                                    <span class="mx-2"></span>
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                    <input type="text" class="form-control">
-                                                    
-                            </div>
+                <div class="row align-items-start mt-2">
+                    <div class="col">
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Title:</span>
+                            <input type="text" class="form-control">                                      
                         </div>
+                        <h5>Date</h5>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
+                            <input type="date" class="form-control">
+                            <span class="mx-2"></span>
+                            <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

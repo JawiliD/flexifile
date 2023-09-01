@@ -9,11 +9,12 @@
 
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="css/virtual-select.min.css"> 
-    <title>member-home</title>
+    <title>report-appointment-status</title>
 </head>
 <body>
 <div class="layout">
     <?php
+    // goods na to
     include 'header.php';
     include 'sidebar-faculty-leader.php'; 
     include 'dashboard-notif.php';
@@ -27,11 +28,10 @@
         <?php
         include 'dashboard.php';          
         include 'dashboard-nav.php';          
-        ?> 
-        
-            <div class="mt-3 p-3 thirteen-div">
-                <h3>Faculty Based on Appoint Status</h3>
-                <hr>
+        ?>
+        <div class="mt-3 p-3 thirteen-div rounded">
+            <h3>Faculty Based on Appoint Status</h3>
+            <hr>
             <form action="" method="POST">
                 <div class="my-3">
                     <label>Faculty Members</label>
@@ -45,52 +45,46 @@
                         </select>
                 </div>
                 <div class="my-3">
-                        <label>Appoint Status</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="permanent">Permanent</option>
-                            <option value="temporary" >Temporary</option>
-                            <option value="contractual_unit" >Contractual</option>
-                            <option value="contractual_doctor" >Part Time</option>
-                        </select>
+                    <label>Appoint Status</label>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="permanent">Permanent</option>
+                        <option value="temporary" >Temporary</option>
+                        <option value="contractual_unit" >Contractual</option>
+                        <option value="contractual_doctor" >Part Time</option>
+                    </select>
                 </div>
                 <div class="my-3">
                     <label>Type of Faculty</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="iteFaculty">ITE Faculty</option>
-                            <option value="geFaculty">GE Faculty</option>
-                            
-                        </select>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="iteFaculty">ITE Faculty</option>
+                        <option value="geFaculty">GE Faculty</option>   
+                    </select>
                 </div> 
                 <div class="my-3">
                     <label>Type of Chart/Graph</label>
-                        <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
-                            <option value="pie chart">Pie Chart</option>
-                            <option value="Bar Graph">Bar Graph</option>
-                           
-                        </select>
+                    <select id="multi_option" multiple name="native-select" placeholder="Select" data-silent-initial-value-set="false">
+                        <option value="pie chart">Pie Chart</option>
+                        <option value="Bar Graph">Bar Graph</option>                   
+                    </select>
                 </div> 
-                <div>
-                <button class="mt-5 btn btn-primary float-end">ADD</button>
+                <div class="text-end">
+                    <button class="mt-5 btn btn-primary">Add</button>
                 </div>
-                <div class="custome-margin-preview">
+                <div class="mt-5">
                     <h3>Preview</h3>
-                    <div class="border rounded mx-auto preview" style="margin-top:5em;">
+                    <div class="border rounded mx-auto mt-3 preview" style="margin-top:5em;">
 
                     </div>
-                    <button class="btn btn-success mt-5 float-end">Generate</button>
+                    <div class="text-end">
+                        <button class="btn btn-success mt-3">Generate</button>
+                    </div>                    
                 </div>
-                
-                
             </form>   
-            </div>
-            <hr>
-            <div class="fourteen-div">
+        </div>
+        <hr>
+        <div class="report-preview">
                 
-            </div>
-
-             
-       
-
+        </div>
     </div>
     <script type="text/javascript" src="js/virtual-select.min.js"></script>
         <script type="text/javascript">

@@ -3,7 +3,7 @@
     <script src="https://kit.fontawesome.com/f30985c93b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 <div class="navigation text-center mt-3 bg-light rounded w-100">
-            <nav class="navbar navbar-expand-lg navbar-light">                
+        <nav class="navbar navbar-expand-lg navbar-light">                
                 <ul class="navbar-nav">
                     <li class="nav-item">
                     <a class="nav-link" href="report-dynamic.php">Dynamic Report</a>

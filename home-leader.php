@@ -31,49 +31,47 @@
                 <div class="row">
                     <div class="col">
                     <div class="mx-2">
-                        <img class="d-inline w-10 mx-1 icon2" src="img/icon1.png">
-                        <img class="d-inline mx-1 icon2" src="img/icon2.png">
-                        <img class="d-inline mx-1 icon2" src="img/icon3.png">
-                        <img class="d-inline mx-1 icon2" src="img/icon4.png">
-                        <img class="d-inline mx-1 icon2" src="img/icon7.png">
-                        <img class="d-inline mx-1 icon2" src="img/icon8.png">
+                        <img class="d-inline w-10 icon2" src="img/icon1.png">
+                        <img class="d-inline icon2" src="img/icon2.png">
+                        <img class="d-inline icon2" src="img/icon3.png">
+                        <img class="d-inline icon2" src="img/icon4.png">
+                        <img class="d-inline icon2" src="img/icon7.png">
+                        <img class="d-inline icon2" src="img/icon8.png">
                     </div>
                     </div>                               
                 </div>
                 <div class="row pt-4">
                     <div class="col">
-                        <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  See Folders>>
-</button>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          See Folders>>
+                        </button>
                     </div>
                     <div class="col">
-                    <a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="faculty-attachment-files.php">See Files>></a>
+                    <a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="leader-attachment-files.php">See Files>></a>
                     </div>                                 
                 </div>
             </div>           
         </div>
-        <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h1>hi</h1>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+        
 
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">List of Folders</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- folder/files content -->
+                </div>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
