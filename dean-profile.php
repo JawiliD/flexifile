@@ -16,8 +16,9 @@
     <?php
     //goods na to
     // require 'config';
+    include 'config.php';
     include 'header.php';
-    include 'sidebar-dean.php';   
+    include 'sidebar-dean.php';
     ?>
     </div>
     <div class="content position-relative">

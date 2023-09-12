@@ -31,7 +31,15 @@
         <h4>A Dynamic Profiling System</h4>
         <br>
         <br>
-        <button class="">Get Started</button>
+        <form action="login-page.php">
+        <button class="cta">
+            <span>Hover me</span>
+            <svg viewBox="0 0 13 10" height="10px" width="15px">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+        </button>
+        </form>
     </div>
     <div>
         <img class="position-absolute z-2 honney"src="img/background-logo.png" alt="">
@@ -94,7 +102,7 @@
     <div id="aboutus-info" class="text-white position-absolute about">
         <img class="z-2 position-absolute img-3" src="img/img-3.png" alt="">
         <h2 class="text-center z-3 mt-5">"About Us"</h2>
-        <p class="text-center mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci a scelerisque purus semper eget. Quam id leo in vitae turpis massa sed elementum tempus. Vitae nunc sed velit dignissim sodales ut eu sem integer. Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Morbi quis commodo odio aenean. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et. 
+        <p class="text-center mt-5 p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci a scelerisque purus semper eget. Quam id leo in vitae turpis massa sed elementum tempus. Vitae nunc sed velit dignissim sodales ut eu sem integer. Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Morbi quis commodo odio aenean. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et. 
             Risus pretium quam vulputate dignissim suspendisse in est.</p>
     </div>
     <div  class="position-absolute honney-3">
@@ -114,7 +122,7 @@
     <div id="contacts-info" class="text-white position-absolute contact">
         <img class="z-2 position-absolute img-4" src="img/img-4.png" alt="">
         <h2 class="text-center z-3 mt-5">"Contact Us"</h2>
-        <p class="text-center mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        <p class="text-center p-3 mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
              eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci a scelerisque purus semper eget. Quam id leo in vitae turpis massa sed elementum tempus. Vitae nunc sed velit dignissim sodales ut eu sem integer. Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Morbi quis commodo odio aenean. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et. Risus pretium quam vulputate dignissim suspendisse in est.</p>
     </div>
     <div class="position-absolute honney-4">

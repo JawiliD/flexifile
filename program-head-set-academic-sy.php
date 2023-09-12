@@ -1,3 +1,8 @@
+<?php
+include 'config.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +17,7 @@
 <body>
 <div class="layout">
     <?php
-    //goods na to
-    // require 'config';
+    //goods na to    
     include 'header.php';
     include 'sidebar-program-head.php';   
     ?>

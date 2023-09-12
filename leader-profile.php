@@ -15,10 +15,11 @@
 <div class="layout">
     <?php
     // goods na to
-    // require 'config';
+    include 'config.php';
     include 'header.php';
     include 'sidebar-faculty-leader.php';  
     include 'dashboard-notif.php';  
+    echo $_SESSION['id'];
      
     ?>
     </div>

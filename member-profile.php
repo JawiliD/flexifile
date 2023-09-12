@@ -14,10 +14,9 @@
 <body>
 <div class="layout">
     <?php
-    // require 'config';
+    include 'config.php';
     include 'header.php';
-    include 'sidebar-faculty-member.php'; 
-    include 'dashboard-notif.php';  
+    include 'sidebar-faculty-member.php';     
     ?>
     </div>
     <div class="content position-relative">

@@ -1,3 +1,7 @@
+<?php
+ include 'config.php';   
+ include 'session.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +20,7 @@
         <!-- start coding here -->
         <?php
          $link = 'member-profile.php'; 
-         $link2 = 'member-attachment-list.php'; 
+         $link2 = 'member-attachnment-list.php'; 
         include 'dashboard.php';
         include 'dashboard1.php';    
         ?>

@@ -90,6 +90,23 @@ body{
     color:white;
 }
 
+/* login */
+.btn-1:hover{
+  background-color: white; 
+  color: #1B2B1B; 
+}
+
+.btn-1{
+  background-color: #1B2B1B;
+  border:1px solid white;
+  color: white;
+}
+
+.form{
+  height:25em;
+}
+
+
 /* content */
 .content {
     /* background-color: aquamarine; */
@@ -326,6 +343,63 @@ body{
     width: 100%;
 }
 
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+ }
+ 
+ .cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #3d913d;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+ }
+ 
+ .cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+ }
+ 
+ .cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #ffffff;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+ }
+ 
+ .cta:hover:before {
+  width: 100%;
+  background: #3d913d;
+ }
+ 
+ .cta:hover svg {
+  transform: translateX(0);
+ }
+ 
+ .cta:active {
+  transform: scale(0.95);
+ }
+
 /*faculty PDS*/
 
 .profile-pds{
@@ -364,7 +438,7 @@ body{
     padding-right: 2em;
 }
 /*tables*/
-.table-useraccount, .table-useraccess, .table-facultymember, .table-deanprogress{
+.table-useraccount,.work-details-div, .family-div, .voluntary-div, .training-div, .education-details-div,.civil-service-details-div, .table-useraccess, .table-facultymember, .table-deanprogress{
     height: 20em;
     margin-top: 10em;
 }
