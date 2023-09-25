@@ -52,6 +52,27 @@
                 
             </div>
         </div>
+        <div class="eleven-div p-3 rounded mt-3 position-relative">
+            <div class="container text-center p-2">
+                <div class="row">
+                    <div class="col">
+                    <div class="mx-2">
+                        <img class="d-inline w-10 icon2" src="../img/icon1.png">
+                        <img class="d-inline icon2" src="../img/icon2.png">
+                        <img class="d-inline icon2" src="../img/icon3.png">
+                        <img class="d-inline icon2" src="../img/icon4.png">
+                        <img class="d-inline icon2" src="../img/icon7.png">
+                        <img class="d-inline icon2" src="../img/icon8.png">
+                    </div>
+                    </div>                               
+                </div>
+                <div class="row pt-4">                   
+                    <div class="col">
+                    <a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="">See Folders>></a>
+                    </div>                                 
+                </div>
+            </div>           
+        </div>
 
 
     </div>

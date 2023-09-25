@@ -153,7 +153,7 @@
             validity: up_validity
             
         });
-        $('#update_civil-service-details-input').val(JSON.stringify(currentDetails));
+        $('#update-civil-service-details-input').val(JSON.stringify(currentDetails));
     });
 
     // Delete civil service row

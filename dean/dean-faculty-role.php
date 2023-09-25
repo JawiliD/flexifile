@@ -39,7 +39,7 @@ require '../config.php';
                             <th scope="col">Name</th>
                             <th scope="col">Educational Attainment</th>
                             <th scope="col">Appointment Status</th>
-                            <th scope="col">Destination</th>
+                            <th scope="col">Designation</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>

@@ -1,3 +1,6 @@
+<?php
+require '../config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
 <body>
 <div class="layout">
     <?php
-    // require 'config';
+   
     include '../header.php';
     include 'sidebar-faculty-member.php';   
     ?>
@@ -23,7 +26,7 @@
         <!-- start coding here -->
         <?php
             include '../dashboard/dashboard.php';
-            include '../attachment-files.php';
+            include '../attachments/attachment-files.php';
         ?>
     </div>
 </body>

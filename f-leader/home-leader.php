@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col border-end border-3 border-opacity-50 border-secondary">
                     <h3>Set PDS deadline</h3>
-                    <button class="btn btn-success">Set</button>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Set</button>
                 </div>
                 <div class="col">
                 <h3>Deadline:</h3>
@@ -59,12 +59,7 @@
                     </div>
                     </div>                               
                 </div>
-                <div class="row pt-4">
-                    <div class="col">
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          See Folders>>
-                        </button>
-                    </div>
+                <div class="row pt-4">                   
                     <div class="col">
                     <a class="bg-success py-2 rounded text-decoration-none text-bold text-light px-4"  href="leader-attachment-files.php">See Files>></a>
                     </div>                                 
@@ -74,19 +69,22 @@
         
 
     </div>
-    <!-- folder Modal -->
+    <!-- set deadline Modal -->
     <div class="modal fade" id="exampleModal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">List of Folders</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Set deadline</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- folder/files content -->
-                    <!-- para po siyang file manager ang style -->
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Deadline:</span>
+                        <input type="date" name="deadline" class="form-control">
+                    </div>
                 </div>
-                <div class="modal-footer">                    
+                <div class="modal-footer">         
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>           
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>

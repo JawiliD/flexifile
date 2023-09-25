@@ -142,7 +142,7 @@
         
 
         // Update the hidden input field with the updated civil service details array
-        var currentDetails = JSON.parse($('#update_training-details-input').val());
+        var currentDetails = JSON.parse($('#update-training-details-input').val());
         currentDetails.push({
             title: up_title,
             trainingfrom: up_trainingfrom,
@@ -152,7 +152,7 @@
             sponsor: up_sponsor          
             
         });
-        $('#update_training-details-input').val(JSON.stringify(currentDetails));
+        $('#update-training-details-input').val(JSON.stringify(currentDetails));
     });
 
     // Delete civil service row

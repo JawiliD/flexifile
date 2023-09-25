@@ -1,0 +1,17 @@
+{
+    "name": "user/flexifile",
+    "autoload": {
+        "psr-4": {
+            "User\\Flexifile\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JawiliD",
+            "email": "dareajawili@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.29"
+    }
+}

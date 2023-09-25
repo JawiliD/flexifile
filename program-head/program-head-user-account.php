@@ -6,54 +6,76 @@ $sqlSelectUser = mysqli_query($con, $querySelectUser);
 $rowUpdateUser = mysqli_fetch_array($sqlSelectUser);
 
 if(isset($_POST['save_user'])){
-    $queryUserAcc = "INSERT INTO `user_tb` (fullname, email, password, role) VALUES (?, ?, ?, ?)";
-    $stmt_userAcc = $con->prepare($queryUserAcc);
-
-    $stmt_userAcc->bind_param('ssss', $fullname, $email, $hashedPassword, $role);
-
     $fullname = trim($_POST["fullname"]);   
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
     $role = trim($_POST["role"]);
-    $hashedPassword = trim(md5($password));
 
-    $execute_userAcc = $stmt_userAcc->execute();
+    // Password validation
+    $minLength = 8; // Minimum password length
+    $hasUppercase = preg_match('/[A-Z]/', $password); // Check for at least one uppercase letter
+    $hasLowercase = preg_match('/[a-z]/', $password); // Check for at least one lowercase letter
+    $hasDigit = preg_match('/\d/', $password); // Check for at least one digit
 
-    if(!$execute_userAcc){
-        echo "Error: " . $stmt_userAcc->error;
-    }else{
-        $stmt_userAcc->close(); 
+    if (strlen($password) < $minLength || !$hasUppercase || !$hasLowercase || !$hasDigit) {
+        echo "<script>
+        alert('Invalid password. Password must contain at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long.');
+    </script>";
+    } else {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $queryUserAcc = "INSERT INTO `user_tb` (fullname, email, password, role) VALUES (?, ?, ?, ?)";
+        $stmt_userAcc = $con->prepare($queryUserAcc);
+
+        $stmt_userAcc->bind_param('ssss', $fullname, $email, $hashedPassword, $role);
+
+        $execute_userAcc = $stmt_userAcc->execute();
+
+        if(!$execute_userAcc){
+            echo "Error: " . $stmt_userAcc->error;
+        } else {
+            $stmt_userAcc->close(); 
+        }
     }
-
-    
 }
 
 if(isset($_POST['update_user'])){
-    $queryUpdateUser = "UPDATE `user_tb` SET fullname = ?, email = ?, password = ?, role=? where id = ?";
-    $stmt_updateUser = $con->prepare($queryUpdateUser);
-
-    $stmt_updateUser->bind_param('ssssi', $fullname, $email, $hashedpassword, $role, $userid);
-
     $userid = $_POST['edit_user_id'];
     $fullname = trim($_POST["fullname"]);   
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
     $role = trim($_POST["role"]);
-    $hashedpassword = trim(md5($password));
 
-    $execute_updateUser = $stmt_updateUser->execute();
+    // Password validation
+    $minLength = 8; // Minimum password length
+    $hasUppercase = preg_match('/[A-Z]/', $password); // Check for at least one uppercase letter
+    $hasLowercase = preg_match('/[a-z]/', $password); // Check for at least one lowercase letter
+    $hasDigit = preg_match('/\d/', $password); // Check for at least one digit
 
-    if (!$execute_updateUser){        
-        echo "Error: " . $stmt_updateUser->error;
-      }else{
-        $stmt_updateUser->close();        
-      }
+    if (strlen($password) < $minLength || !$hasUppercase || !$hasLowercase || !$hasDigit) {
+        echo "<script>
+        alert('Invalid password. Password must contain at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long.');
+    </script>";
+    } else {
+        $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $queryUpdateUser = "UPDATE `user_tb` SET fullname = ?, email = ?, password = ?, role=? where id = ?";
+        $stmt_updateUser = $con->prepare($queryUpdateUser);
+
+        $stmt_updateUser->bind_param('ssssi', $fullname, $email, $hashedpassword, $role, $userid);
+
+        $execute_updateUser = $stmt_updateUser->execute();
+
+        if (!$execute_updateUser){        
+            echo "Error: " . $stmt_updateUser->error;
+        } else {
+            $stmt_updateUser->close();        
+        }
+    }
 }
-
-
-
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,10 +177,10 @@ if(isset($_POST['update_user'])){
                     <div class="col">
                         <select class="w-100 p-2 rounded" name="role" id="role">
                             <option value="">Choose role...</option>
-                            <option value="faculty_member">Faculty Member</option>
-                            <option value="program_head">Program Head</option>
+                            <option value="faculty member">Faculty Member</option>
+                            <option value="program head">Program Head</option>
                             <option value="Dean">Dean</option>
-                            <option value="faculty_leader">Task Force Leader</option>
+                            <option value="Task Force leader">Task Force Leader</option>
                         </select>                                    
                     </div>
                 </div>
@@ -226,10 +248,6 @@ if(isset($_POST['update_user'])){
         $('#edit_user_id').val(userId);
     });
 </script>
-
-
-
-
 
 </body>
 </html>

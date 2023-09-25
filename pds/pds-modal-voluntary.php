@@ -137,7 +137,7 @@
             updated_position: up_position           
             
         });
-        $('#update_voluntary-details-input').val(JSON.stringify(currentDetails));
+        $('#update-voluntary-details-input').val(JSON.stringify(currentDetails));
     });  
 
 

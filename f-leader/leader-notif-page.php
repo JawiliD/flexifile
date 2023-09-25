@@ -49,8 +49,7 @@ require "../config.php";
                     <?php
 
                     ?>
-                        <tr>
-                            <td scope="row">3</td>
+                        <tr>                            
                             <td>Sample</td>
                             <td>Sample</td>
                             <td>Sample</td>
@@ -101,7 +100,7 @@ require "../config.php";
                 <table class="table table-striped ">
                     <thead class="table-success">
                         <tr>
-                            <th scope="col">No.</th>
+                            
                             <th scope="col">Name</th>
                             <th scope="col">Faculty Type</th>
                             <th scope="col">Last time Update</th>
@@ -110,14 +109,14 @@ require "../config.php";
                     </thead>
                     <tbody class="table-secondary">
                         <tr>
-                            <td scope="row">1</td>
+                           
                             <td>Sample</td>
                             <td>Sample</td>
                             <td>Sample</td>
                             <td>Sample</td>                            
                         </tr>
                         <tr>
-                            <td scope="row">2</td>
+                            
                             <td>Sample</td>
                             <td>Sample</td>
                             <td>Sample</td>
@@ -125,7 +124,7 @@ require "../config.php";
                            
                         </tr>
                         <tr>
-                            <td scope="row">3</td>
+                            
                             <td>Sample</td>
                             <td>Sample</td>
                             <td>Sample</td>

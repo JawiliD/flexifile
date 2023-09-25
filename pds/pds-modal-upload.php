@@ -1,3 +1,6 @@
+<?php
+include 'pds-process-upload.php';
+?>
 <div class="modal fade " id="exampleModal8"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel8" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -6,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="pds-process-upload.php" method="post"enctype="multipart/form-data">
+                <form method="post"enctype="multipart/form-data">
                 <div class="row align-items-start mt-2">
                     <div class="col">
                         <div class="input-group input-group-sm mb-3">

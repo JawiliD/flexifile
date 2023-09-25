@@ -20,7 +20,7 @@ require '../config.php';
     include '../header.php';
     include 'sidebar-faculty-leader.php';  
     include '../dashboard/dashboard-notif.php'; 
-    
+    $userID = $_SESSION['id'];
      
     ?>
     </div>

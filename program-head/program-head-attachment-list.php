@@ -25,7 +25,7 @@ require '../config.php';
         <!-- start coding here -->
         <?php
             include '../dashboard/dashboard.php';
-            include '../attachment-files.php';
+            include '../attachments/attachment-files.php';
         ?>
     </div>
 </body>
