@@ -241,18 +241,13 @@ body{
     right: 0;
     top: 6rem;
 }
-.honney-2{
-    left: 0;
-    top: 24em;
-}
+
 .honney-3{
     left: 0;
-    top: 135em;
     width: 100%;
 }
 .honney-4{
     right: 0;
-    top: 203.5em;
     width: 100%;
 }
 .logo3{
@@ -260,11 +255,17 @@ body{
     width: 25em;
     top: 10rem;
 }
-.cons{
-    width: 100vw;
-    height: 24rem;
-    top: 43em;
-    right: 0;
+.section-1{
+    top: 46em;
+}
+.section-2{
+  top: 68em;
+}
+.section-3{
+  top: 131em;
+}
+.section-4{
+  top: 201em;
 }
 .square{
     height: 13em;
@@ -305,10 +306,10 @@ body{
     
 }
 .about{
-    top: 71em;
+    top: 70em;
 }
 .contact{
-    top: 173.5em;
+    top: 170em;
 }
 .about, .contact p{
     font-size: 22px;
@@ -772,10 +773,5 @@ label{
 .input-group-sm {
   max-width: 100%; 
 }
-/*leader-notif*/
 
-.notif-div {
-  background-color: rgba(255, 255, 255, 0.826);
-    height:40em;
-}
 

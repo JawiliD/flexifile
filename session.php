@@ -15,6 +15,6 @@
     unset($_SESSION['id']);
 
     /* Redirect to login page */
-    pathTo('welcome-page');
+    pathTo('../welcome-page');
   }
 ?>

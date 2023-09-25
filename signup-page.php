@@ -1,47 +1,84 @@
 <?php
-include 'config.php';
+require 'config.php';
+
+// Function to validate the password
+function validatePassword($password) {
+    // Define password criteria
+    $minLength = 8;  // Minimum password length
+    $hasUppercase = preg_match('/[A-Z]/', $password); // Check for at least one uppercase letter
+    $hasLowercase = preg_match('/[a-z]/', $password); // Check for at least one lowercase letter
+    $hasDigit = preg_match('/\d/', $password);       // Check for at least one digit
+
+    // Check if the password meets all criteria
+    if (strlen($password) < $minLength || !$hasUppercase || !$hasLowercase || !$hasDigit) {
+        return false; // Password is invalid
+    }
+
+    return true; // Password is valid
+}
 
 if (isset($_POST['signup'])) {
     $fullname = trim($_POST["fullname"]);   
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
     $role = trim($_POST["role"]);
-    $hashedPassword = trim(md5($password));
+    $type = trim($_POST["type"]);
 
-    // Use prepared statements to insert data securely
-    $queryUser = "INSERT INTO `user_tb` (fullname, email, password, role) VALUES (?, ?, ?, ?)";
-    $stmt = mysqli_prepare($con, $queryUser);
+    // Check if the email already exists in the database
+    $queryCheckEmail = "SELECT email FROM `user_tb` WHERE email = ?";
+    $stmtCheckEmail = mysqli_prepare($con, $queryCheckEmail);
     
-    // Check if the statement was prepared successfully
-    if ($stmt) {
-        // Bind the parameters to the statement
-        mysqli_stmt_bind_param($stmt, "ssss", $fullname, $email, $hashedPassword, $role);
-
-        // Execute the statement
-        if (mysqli_stmt_execute($stmt)) {
+    if ($stmtCheckEmail) {
+        mysqli_stmt_bind_param($stmtCheckEmail, "s", $email);
+        mysqli_stmt_execute($stmtCheckEmail);
+        mysqli_stmt_store_result($stmtCheckEmail);
+        
+        // If the email already exists, show an error message
+        if (mysqli_stmt_num_rows($stmtCheckEmail) > 0) {
             echo "<script>
-                alert('Registration Successful...You may now Login');
-                setTimeout(function() {
-                    window.location.href = 'login-page.php';
-                }, 2000); // Delay the redirection by 2 seconds (2000 milliseconds)
+                alert('Email already exists. Please use a different email.');
             </script>";
         } else {
-            // Insertion failed
-            echo "Error: " . mysqli_error($con);
-        }
+            // Email is unique, proceed with registration
+            mysqli_stmt_close($stmtCheckEmail);
 
-        // Close the statement
-        mysqli_stmt_close($stmt);
-    } else {
-        // Statement preparation failed
-        echo "Error: " . mysqli_error($con);
+            // Validate the password
+            if (!validatePassword($password)) {
+                echo "<script>
+                    alert('Invalid password. Password must contain at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long.');
+                </script>";
+            } else {
+                // Password is valid, proceed with registration
+
+                // Hash the password using password_hash()
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                $queryUser = "INSERT INTO `user_tb` (fullname, email, password, role, type) VALUES (?, ?, ?, ?, ?)";
+                $stmt = mysqli_prepare($con, $queryUser);
+                
+                if ($stmt) {
+                    mysqli_stmt_bind_param($stmt, "sssss", $fullname, $email, $hashedPassword, $role, $type);
+
+                    if (mysqli_stmt_execute($stmt)) {
+                        echo "<script>
+                            alert('Registration Successful...You may now Login');
+                            setTimeout(function() {
+                                window.location.href = 'login-page.php';
+                            }, 500);
+                        </script>";
+                    } else {
+                        echo "Error: " . mysqli_error($con);
+                    }
+
+                    mysqli_stmt_close($stmt);
+                } else {
+                    echo "Error: " . mysqli_error($con);
+                }
+            }
+        }
     }
 }
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,26 +103,28 @@ if (isset($_POST['signup'])) {
         </div>
     </div>
     <div class="mt-5 d-flex justify-content-center align-items-center">
-        <div class="w-25 p-3 border border-2 border-light rounded position-relative form">
-            <div class="position-absolute z-1">
-                <img class="w-100 opacity-25 top-0 left-0" src="img/logo.png">
-            </div>
-            <div class="position-absolute mx-3 text-center z-3">
+        <div class="w-25 p-3 border border-2 border-light rounded ">
+            <div class="mx-4 text-center">
                 <h3 class="text-light fw-bold">Registration</h3>
                 <form action="signup-page.php" method="post">    
-                <div class="row mt-3 mb-3">
+                <div class="row mt-4 mb-3">
                     <div class="col">
-                        <input type="text" name="fullname" class="form-control" placeholder="Fullname" aria-label="fullname">
+                        <input type="text" name="fullname" class="form-control" placeholder="Fullname" aria-label="fullname" required>
                     </div>                    
                 </div>
-                <input type="email" class="form-control mb-3" name="email" placeholder="Email" aria-label="Email">
-                <input type="password" class="form-control mb-3" name="password" placeholder="Password" aria-label="Last name">
-                    <select class="w-100 p-2 rounded" name="role" id="role">
-                        <option value="default">Choose role...</option>
-                        <option value="faculty_member">Faculty Member</option>
-                        <option value="program_head">Program Head</option>
-                        <option value="Dean">Dean</option>
-                        <option value="faculty_leader">Faculty Leader</option>
+                <input type="email" class="form-control mb-3" name="email" placeholder="Email" aria-label="Email" required>
+                <input type="password" class="form-control mb-3" name="password" placeholder="Password" aria-label="password" required>
+                    <select class="w-100 p-2 rounded mb-3" name="type" id="type" required>
+                        <option value="default">Faculty Type...</option>
+                        <option value="ITE Faculty">ITE Faculty</option>
+                        <option value="GE Faculty">GE Faculty</option>
+                    </select>
+                    <select class="w-100 p-2 rounded" name="role" id="role" required>
+                        <option value="default">Faculty Role...</option>
+                        <option value="faculty member">Faculty Member</option>
+                        <option value="program head">Program Head</option>
+                        <option value="dean">Dean</option>
+                        <option value="task force leader">Task Force Leader</option>
                     </select>
                 <input class="mx-3 btn btn-light rounded mt-5" name="signup" type="submit" value="Sign Up">
                 <p class="text-light">Already have an account? <a class="text-decoration-none" href="login-page.php">Login</a></p>

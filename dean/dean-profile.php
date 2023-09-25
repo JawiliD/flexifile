@@ -1,3 +1,6 @@
+<?php
+require '../config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,21 +9,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/f30985c93b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <title>flexifile</title>
-    <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">   
+    <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
+    <title>title</title>
 </head>
 <body>
-<div class="position-fixed z-2 header">
-    <img class="ms-4 position-absolute z-3" src="../img/flexifile.png" style="width:10em">
-    <div class="icons">
-    
-    <a href="../logout.php"><i class="fa-solid fa-right-from-bracket fa-2xl float-end mt-4 me-4 setting"></i></a>
+<div class="layout">
+    <?php
+    include '../header.php';
+    include 'sidebar-dean.php';
+    ?>
     </div>
-
-<div>
-
-
+    <div class="content position-relative">
+        <!-- start coding here -->
+        <?php
+            include '../dashboard/dashboard.php';
+            include '../pds/faculty-profile.php';
+        ?>
+    </div>
 </body>
 </html>

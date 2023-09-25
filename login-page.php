@@ -1,24 +1,24 @@
 <?php
-include 'config.php';
+require 'config.php';
 
-/* Functions */
+
 function pathTo($destination) {
   echo "<script>window.location.href = '/flexifile/$destination.php'</script>";
 }
 
 if ($_SESSION['status'] == 'invalid' || empty($_SESSION['status'])) {
-  /* Set Default Invalid */
+
   $_SESSION['status'] = 'invalid';
 }
 
-if ($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'faculty_member') {
-  pathTo('home-member');
-}elseif($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'faculty_leader') {
-    pathTo('home-leader');
+if ($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'faculty member') {
+  pathTo('f-member/home-member');
+}elseif($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'task force leader') {
+    pathTo('f-leader/home-leader');
 }elseif($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'dean') {
-    pathTo('home-dean');
-}elseif($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'program_head') {
-    pathTo('home-program-head');
+    pathTo('dean/home-dean');
+}elseif($_SESSION['status'] == 'valid' AND $_SESSION['role'] == 'program head') {
+    pathTo('program-head/home-program-head');
 }
 
 if (isset($_POST['login'])) {
@@ -26,34 +26,46 @@ if (isset($_POST['login'])) {
   $password = trim($_POST['password']);
 
   if (empty($email) || empty($password)) {
-    echo "Please fill up all fields";
+    echo "<script>alert('Please fiil up all the fields')</script>";
   } else {
-    $queryValidate = "SELECT * FROM `user_tb` WHERE email = '$email' AND password = md5('$password')";
-    $sqlValidate = mysqli_query($con, $queryValidate);
-    $rowValidate = mysqli_fetch_array($sqlValidate);
+    $query = "SELECT * FROM user_tb WHERE email = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($rowValidate) {
-      $role = $rowValidate['role'];
-      $_SESSION['status'] = 'valid';
-      $_SESSION['email'] = $rowValidate['email'];
-      $_SESSION['fullname'] = $rowValidate['fullname'];
-      $_SESSION['role'] = $rowValidate['role'];
-      $_SESSION['id'] = $rowValidate['id'];
+    if ($rowValidate = $result->fetch_assoc()) {
+      if(password_verify($password, $rowValidate['password'])){
+        $role = $rowValidate['role'];
+        $_SESSION['status'] = 'valid';
+        $_SESSION['email'] = $rowValidate['email'];
+        $_SESSION['fullname'] = $rowValidate['fullname'];
+        $_SESSION['role'] = $rowValidate['role'];
+        $_SESSION['id'] = $rowValidate['id'];
       
 
-      if ($role == 'faculty_member') {
-        echo "<script>window.location.href = '/flexifile/home-member.php'</script>";
-      } else if ($role == 'faculty_leader') {
-        echo "<script>window.location.href = '/flexifile/home-leader.php'</script>";
-      }else if ($role == 'program_head') {
-        echo "<script>window.location.href = '/flexifile/home-program-head.php'</script>";
-      }else if ($role == 'Dean') {
-        echo "<script>window.location.href = '/flexifile/home-dean.php'</script>";
+      if ($role == 'faculty member') {
+        header("Location: f-member/home-member.php");
+        exit;
+      } else if ($role == 'task force leader') {
+        header("Location: f-leader/home-leader.php");
+        exit;
+      }else if ($role == 'program head') {
+        header("Location: program-head/home-program-head.php");
+        exit;
+      }else if ($role == 'dean') {
+        header("Location: dean/home-dean.php");
+        exit;
       }
 
+
+      }else{
+        echo "<script>alert('Invalid password')</script>" ;       
+      }
+      
     } else {
       $_SESSION['status'] = 'invalid';
-      echo 'Invalid Credential';
+      echo "<script>alert('Invalid Credentials')</script>";
     }
   }
 }
@@ -84,19 +96,16 @@ if (isset($_POST['login'])) {
     </div>
     <div class="mt-5 d-flex justify-content-center align-items-center">
         <div class="w-25 p-3 border border-2 border-light rounded position-relative form">
-            <div class="position-absolute z-1">
-                <img class="w-100 opacity-25" src="img/logo.png">
-            </div>
-            <div class="position-absolute mt-5 mx-3 text-center z-3">
+            <div class="mt-5 mx-4 text-center">
                 <h3 class="text-light fw-bold">Log In</h3>
                 <form action="login-page.php" method="post">
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                        <input type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" required>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
-                        <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                        <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
                     </div>
                     <input class="rounded btn btn-light mt-3 mx-3" name="login" type="submit" value="Log In"><br>
                 </form>    
