@@ -152,8 +152,8 @@ if (!empty($rowfamily)) {
     include 'pds-modal.php';
     include 'pds-modal-upload.php';    
     ?>
-    <div class="profile-pds mt-3 rounded p-3">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pdsmodal">Create</button>
+    <div class="profile-pds mt-3 rounded p-3">          
+        <button type="button" class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#pdsmodal">Create</button>        
         <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal8">Upload</button>        
         <hr class="hr"/>
         <div class="profile-pds rounded bg-secondary bg-opacity-50 p-2 text-center">
@@ -171,6 +171,8 @@ if (!empty($rowfamily)) {
                 <a class="d-inline link-opacity-100 px-2  nav-link-info"id="voluntary" href="#voluntary-work">Voluntary Work</a>
                 <span class="vertical-line"></span>
                 <a class="d-inline link-opacity-100 px-2  nav-link-info"id="interventions" href="#intervention-ld">L&D Interventions</a>
+                <span class="vertical-line"></span>
+                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="interventions" href="#other_info">Other Information</a>
             </div>
         </div>
         <div class="profile-pds-personal mt-3" id="personal-info">
@@ -399,10 +401,11 @@ if (!empty($rowfamily)) {
             </div>
         </div>
         <div class="profile-pds-education" id="educational-background">
-            <h4 class="fw-bold">Educational Background</h4>                       
+            <h4 class="fw-bold">Educational Background</h4> 
+            <h5 class="fw-bold">Elementary</h5>                      
             <?php
             
-            $sqlElementary = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'elementary'");         
+            $sqlElementary = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'ELEMENTARY'");         
             
             if(mysqli_num_rows($sqlElementary) > 0) {
                 while ($row2 = mysqli_fetch_array($sqlElementary)){
@@ -435,7 +438,8 @@ if (!empty($rowfamily)) {
                             </div>
                         </div>                        
                     </div>
-                </div>';
+                </div>
+                <hr>';
                 }
             } else {               
                     echo '<div class="container text-start">
@@ -479,7 +483,7 @@ if (!empty($rowfamily)) {
             <h5 class="fw-bold">Secondary</h5>
 
             <?php            
-            $sqlSecondary = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'secondary'");         
+            $sqlSecondary = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'SECONDARY'");         
 
             if(mysqli_num_rows($sqlSecondary) > 0){
                 while ($row3 = mysqli_fetch_array($sqlSecondary)){
@@ -512,7 +516,7 @@ if (!empty($rowfamily)) {
                             </div>
                         </div>                        
                     </div>
-                </div>';
+                </div><hr>';
                 } 
             }else{                
                     echo '<div class="container text-start">
@@ -556,7 +560,7 @@ if (!empty($rowfamily)) {
             <h5 class="fw-bold">Vocational/Trade Course</h5>
             <?php
             
-            $sqlVocational = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'vocational'");         
+            $sqlVocational = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'VOCATIONAL / TRADE COURSE'");         
             
             if(mysqli_num_rows($sqlVocational)){
                 while ($row4 = mysqli_fetch_array($sqlVocational)){
@@ -589,7 +593,7 @@ if (!empty($rowfamily)) {
                             </div>
                         </div>                        
                     </div>
-                </div>';
+                </div><hr>';
                 }
             }else{                
                     echo '<div class="container text-start">
@@ -632,7 +636,7 @@ if (!empty($rowfamily)) {
                 <h5 class="fw-bold">College</h5>
                 <?php
             
-            $sqlCollege = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'college'");         
+            $sqlCollege = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'COLLEGE'");         
 
             if(mysqli_num_rows($sqlCollege) > 0){
                 while ($row5 = mysqli_fetch_array($sqlCollege)){
@@ -665,7 +669,7 @@ if (!empty($rowfamily)) {
                             </div>
                         </div>                        
                     </div>
-                </div>';
+                </div><hr>';
                 }
             }else {                
                     echo '<div class="container text-start">
@@ -708,7 +712,7 @@ if (!empty($rowfamily)) {
                 <h5 class="fw-bold">Graduate Studies</h5>
                 <?php
             
-            $sqlGraduate = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'graduate'");         
+            $sqlGraduate = mysqli_query($con, "SELECT * FROM `education_tb` where userid = $userID AND level = 'GRADUATE STUDIES'");         
             if(mysqli_num_rows($sqlGraduate)){
                 while ($row6 = mysqli_fetch_array($sqlGraduate)){
                     echo '<div class="container text-start">
@@ -740,7 +744,7 @@ if (!empty($rowfamily)) {
                             </div>
                         </div>                        
                     </div>
-                </div>';
+                </div><hr>';
                 }
             }else{
                     echo '<div class="container text-start">
@@ -876,6 +880,9 @@ if (!empty($rowfamily)) {
                                 <p>To:'.$row8['work_to_date'].'</p>
                             </div>
                             <div class="input-group input-group-sm mb-3">
+                                <p>Position Title:'.$row8['position_title'].'</p>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
                                 <p>Department/Agency/Office/Company:'.$row8['department'].'</p>
                             </div>
                             <div class="input-group input-group-sm mb-3">
@@ -906,6 +913,9 @@ if (!empty($rowfamily)) {
                                 <p>From:b</p>
                                 <span class="mx-5"></span>
                                 <p>To:v</p>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <p>Position Title:</p>
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <p>Department/Agency/Office/Company: </p>
@@ -1000,7 +1010,7 @@ if (!empty($rowfamily)) {
                     <hr class="border border-success border-3 opacity-100"/>
                 </div>
             </div>
-            <div class="profile-pds-intervention" id="intervendion-ld">
+            <div class="profile-pds-intervention" id="intervention-ld">
                 <h5 class="fw-bold">Learning and Development (L&D) Interventions/Training Programs Attended</h5>
                 <?php
                 $sqlTrainingDetails = mysqli_query($con,"SELECT * FROM `training_programs_tb` where userid = $userID");

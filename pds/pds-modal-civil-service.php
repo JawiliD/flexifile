@@ -1,3 +1,64 @@
+<?php
+// include '../header.php';
+// include '../config.php';
+// $userID = $_SESSION['id'];
+
+if(isset($_POST['save_civil_service'])){
+    $updateCivilServiceDetails = isset($_POST['update-civil-service-details']) ? json_decode($_POST['update-civil-service-details'], true) : array();
+
+    foreach ($updateCivilServiceDetails as $up_service) {       
+        $career = $up_service['up_career'];
+        $rating = $up_service['up_rating'];
+        $examination = $up_service['up_examination'];
+        $place = $up_service['up_place'];
+        $number = $up_service['up_number'];
+        $validity = $up_service['up_validity'];       
+
+        $queryupdateServiceDetails = "INSERT INTO `civil_service_tb` (userid, career, rating, examination, place, number, validity) VALUES (?,?,?,?,?,?,?)";
+        $stmt_updateCivilService = $con->prepare($queryupdateServiceDetails);
+
+        $stmt_updateCivilService->bind_param('issssss',$userID, $career, $rating, $examination, $place, $number, $validity);
+        
+        $stmt_executeUpdateCivilService =  $stmt_updateCivilService->execute();
+
+        if (!$stmt_executeUpdateCivilService) {
+            die(mysqli_error($con));
+        } 
+    }
+    $stmt_updateCivilService->close();
+    unset($_SESSION['updateCivilServiceDetails']);
+    
+    //notification
+    $queryCivilNotification = "INSERT INTO `notification_tb` (fullname, faculty_type, date_upload, updated_part) VALUES (?, ?, ?, ?)";
+
+    $stmt_civilNotification = $con->prepare($queryCivilNotification);
+
+    $stmt_civilNotification->bind_param('ssss', $fullname, $facultyType, $date, $section);
+
+    $fullname = $_SESSION['fullname'];
+    date_default_timezone_set("Asia/Manila");
+    $date = date("Y-m-d");
+    $section = "edited his/her Civil Service Details";
+    $facultyType = $_SESSION['type'];
+
+    $execute_civilNotification = $stmt_civilNotification->execute();
+
+    if (!$execute_civilNotification){        
+      echo "Error: " . $stmt_civilNotification->error;
+    }else{
+        echo "Notification inserted successfully.";
+      $stmt_civilNotification->close(); 
+      $con->close();       
+    }
+    
+}
+
+$updateCivilServiceDetails = isset($_SESSION['updateCivilServiceDetails']) ? $_SESSION['updateCivilServiceDetails'] : array();
+
+
+
+?>
+<!-- <button type="button" class="btn btn-success px-3 edit-btn-1" data-bs-toggle="modal" data-bs-target="#exampleModal4">Edit</button> -->
 <div class="modal fade" id="exampleModal4"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -27,6 +88,21 @@
                                     </tr>                                     
                                 </thead>
                                 <tbody>
+                                <?php                                    
+                                    $querySelectCivilService = "SELECT * FROM `civil_service_tb` where userid = $userID";
+                                    $sqlSelectCivilService = mysqli_query($con,$querySelectCivilService);
+                                    while($rowCivil = mysqli_fetch_array($sqlSelectCivilService)){
+                                        echo '<tr>
+                                        <td>'.$rowCivil['career'].'</td>
+                                        <td>'.$rowCivil['rating'].'</td>
+                                        <td>'.$rowCivil['examination'].'</td>
+                                        <td>'.$rowCivil['place'].'</td>
+                                        <td>'.$rowCivil['number'].'</td>
+                                        <td>'.$rowCivil['validity'].'</td>                                        
+                                        </tr>';
+                                    }
+
+                                    ?>
                                     
                                 </tbody>                                
                             </table>
@@ -46,7 +122,7 @@
                                     </div>
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Date of Examination/Conferment:</span>
-                                        <input type="date" name="up_examination" class="form-control">
+                                        <input type="text" name="up_examination" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -61,12 +137,12 @@
                                         <input type="text" name="up_number" class="form-control">
                                         <span class="mx-2"></span>
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Date of Validity:</span>
-                                        <input type="date" name="up_validity" class="form-control">
+                                        <input type="text" name="up_validity" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="text-end">  
-                                    <button type="button" name="addBtn" class="btn btn-primary addbtn1" >Add</button>
+                                    <button type="button" name="addBtn" class="btn btn-primary addbtnUpdateCivil" >Add</button>
                                 </div>
                                 <h5 class="mt-4">Preview</h5> 
                                 <div class="civil-service-details-div m-0 overflow-scroll">                          
@@ -94,12 +170,12 @@
                                         
                                     </tbody>
                                     <input type="hidden" name="userid" value="<?php echo $userID; ?>">
-                                    <input type="hidden" name="update-civil-service-details" id="update-civil-service-details-input" value="<?php echo htmlspecialchars(json_encode($updateCivilServiceDetails)); ?>">
+                                    <input type="hidden" name="update-civil-service-details" id="update-civil-service-input" value="<?php echo htmlspecialchars(json_encode($updateCivilServiceDetails)); ?>">
                                 </table>
                             </div>                            
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" name="save_civil_service">Save</button>
+                            <button type="submit" class="btn btn-success" name="save_civil_service">Save</button>
                             <button type="button" class="btn btn-danger"data-bs-dismiss="modal">Cancel</button>
                         </div>
                         </form> 
@@ -108,7 +184,7 @@
             </div>
         <script>
     $(document).ready(function() {
-    $('.btn.btn-primary.addbtn1').on('click', function(e) {
+    $('.btn.btn-primary.addbtnUpdateCivil').on('click', function(e) {
         e.preventDefault(); // Prevent form submission
 
         var up_career = $('input[name="up_career"]').val();
@@ -120,7 +196,7 @@
        
 
         // Create the table row HTML
-        var newRow = '<tr>' +
+        var newRow1 = '<tr>' +
             '<td>' + up_career + '</td>' +
             '<td>' + up_rating + '</td>' +
             '<td>' + up_examination + '</td>' +
@@ -131,7 +207,7 @@
             '</tr>';
 
         // Append the new row to the table body
-        $('.update-civil-service-table tbody').append(newRow);
+        $('.update-civil-service-table tbody').append(newRow1);
 
         // Clear the input fields
         $('input[name="up_career"]').val('');
@@ -143,17 +219,17 @@
         
 
         // Update the hidden input field with the updated civil service details array
-        var currentDetails = JSON.parse($('#update-civil-service-details-input').val());
-        currentDetails.push({
-            career: up_career,
-            rating: up_rating,
-            examination: up_examination,  
-            place: up_place,
-            number: up_number,
-            validity: up_validity
+        var currentDetails1 = JSON.parse($('#update-civil-service-input').val());
+        currentDetails1.push({
+            up_career: up_career,
+            up_rating: up_rating,
+            up_examination: up_examination,  
+            up_place: up_place,
+            up_number: up_number,
+            up_validity: up_validity
             
         });
-        $('#update-civil-service-details-input').val(JSON.stringify(currentDetails));
+        $('#update-civil-service-input').val(JSON.stringify(currentDetails1));
     });
 
     // Delete civil service row
@@ -163,10 +239,10 @@
         $(this).closest('tr').remove();
 
         // Update the hidden input field with the updated education details array
-        var currentDetails = JSON.parse($('#update-civil-service-details-input').val());
-        var rowIndex = $(this).closest('tr').index();
-        currentDetails.splice(rowIndex, 1);
-        $('#update-civil-service-details-input').val(JSON.stringify(currentDetails));
+        var currentDetails1 = JSON.parse($('#update-civil-service-input').val());
+        var rowIndex1 = $(this).closest('tr').index();
+        currentDetails1.splice(rowIndex1, 1);
+        $('#update-civil-service-input').val(JSON.stringify(currentDetails1));
     });
 });
     </script>

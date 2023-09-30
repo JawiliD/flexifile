@@ -139,6 +139,7 @@ $(document).ready(function() {
         var workto = $('input[name="work-to-date"]').val();
         var department = $('input[name="department"]').val();
         var salary = $('input[name="salary"]').val();
+        var position = $('input[name="position_title"]').val();
         var paygrade = $('input[name="paygrade"]').val();
         var appointment = $('input[name="appointment"]').val();
         var govservice = $('input[name="gov-service"]').val();
@@ -150,6 +151,7 @@ $(document).ready(function() {
             '<td>' + workto + '</td>' +
             '<td>' + department + '</td>' +
             '<td>' + salary + '</td>' +
+            '<td>' + position + '</td>' +
             '<td>' + paygrade + '</td>' +
             '<td>' + appointment + '</td>' +            
             '<td>' + govservice + '</td>' +            
@@ -164,6 +166,7 @@ $(document).ready(function() {
         $('input[name="work-to-date"]').val('');
         $('input[name="department"]').val('');
         $('input[name="salary"]').val('');
+        $('input[name="position_title"]').val('');
         $('input[name="paygrade"]').val('');
         $('input[name="appointment"]').val('');
         $('input[name="gov-service"]').val('');
@@ -176,6 +179,7 @@ $(document).ready(function() {
             workto: workto,
             department: department,
             salary: salary,
+            salary: position,
             paygrade: paygrade,
             appointment: appointment,
             govservice: govservice
@@ -370,6 +374,60 @@ $(document).ready(function() {
         var rowIndex = $(this).closest('tr').index();
         currentDetails.splice(rowIndex, 1);
         $('#family-details-input').val(JSON.stringify(currentDetails));
+    });
+});
+    </script>
+    <script>
+    $(document).ready(function() {
+    $('.btn.btn-primary.addbtnOther').on('click', function(e) {
+        e.preventDefault(); // Prevent form submission
+
+        var skills = $('input[name="skills_hobbies"]').val();
+        var recognition = $('input[name="recognition"]').val();
+        var association = $('input[name="association"]').val();
+       
+        
+       
+
+        // Create the table row HTML
+        var newRow = '<tr>' +
+            '<td>' + skills + '</td>' +
+            '<td>' + recognition + '</td>' +
+            '<td>' + association + '</td>' +                                  
+            '<td><button class="btn btn-danger rounded delete-others">Delete</button></td>' +
+            '</tr>';
+
+        // Append the new row to the table body
+        $('.other-table tbody').append(newRow);
+
+        // Clear the input fields
+        $('input[name="skills_hobbies"]').val('');
+        $('input[name="recognition"]').val('');
+        $('input[name="association"]').val('');               
+        
+
+        // Update the hidden input field with the updated civil service details array
+        var currentDetails = JSON.parse($('#other-details-input').val());
+        currentDetails.push({
+            skills: skills,
+            recognition: recognition,
+            association: association   
+            
+        });
+        $('#other-details-input').val(JSON.stringify(currentDetails));
+    });
+
+    // Delete civil service row
+    $(document).on('click', '.btn.btn-danger.rounded.delete-others', function(e) {
+        e.preventDefault();
+        // Remove the row from the table
+        $(this).closest('tr').remove();
+
+        // Update the hidden input field with the updated education details array
+        var currentDetails = JSON.parse($('#other-details-input').val());
+        var rowIndex = $(this).closest('tr').index();
+        currentDetails.splice(rowIndex, 1);
+        $('#other-details-input').val(JSON.stringify(currentDetails));
     });
 });
     </script>

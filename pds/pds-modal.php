@@ -1,6 +1,10 @@
 <?php
+
 include 'pds-php-syntax.php';
+
+
 ?>
+
 <div class="modal fade" id="pdsmodal"data-bs-backdrop="false" tabindex="-1" aria-labelledby="pdsmodal1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -31,7 +35,7 @@ include 'pds-php-syntax.php';
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Date of Birth:</span>
-                                <input type="date" name="birthday" class="form-control">
+                                <input type="text" name="birthday" class="form-control">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Place of Birth:</span>
@@ -227,7 +231,7 @@ include 'pds-php-syntax.php';
                                     <input type="text" name="childname" class="form-control">
                                     <span class="mx-2"></span>
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Date of Birth:</span>
-                                    <input type="date" name="childbirth" class="form-control">
+                                    <input type="text" name="childbirth" class="form-control">
                                 </div>                               
                                 <div class="text-end">  
                                     <button type="button" name="addBtn" class="btn btn-primary addbtn5" >Add</button>
@@ -258,11 +262,11 @@ include 'pds-php-syntax.php';
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Level:</span>
                                         <select class="form-control" name="level" id="level">
-                                            <option value="elementary">Elementary</option>
-                                            <option value="secondary">Secondary</option>
-                                            <option value="vocational">Vocational</option>
-                                            <option value="college">College</option>
-                                            <option value="graduate">Graduate Studies</option>
+                                            <option value="ELEMENTARY">Elementary</option>
+                                            <option value="SECONDARY">Secondary</option>
+                                            <option value="VOCATIONAL / TRADE COURSE">Vocational</option>
+                                            <option value="COLLEGE">College</option>
+                                            <option value="GRADUATE STUDIES">Graduate Studies</option>
                                         </select>   
                                     </div>
                                     <div class="input-group input-group-sm mb-3">
@@ -273,7 +277,7 @@ include 'pds-php-syntax.php';
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Basic Educational/Degree/Course:</span>
                                         <input type="text" name="degree" class="form-control">
                                     </div>
-                                    <p>Period Attendance</p>
+                                    <p><strong>Period Attendance</strong></p>
                                     <div class="input-group input-group-sm mb-3">                                        
                                         <span class="input-group-text" id="inputGroup-sizing-sm"> From:</span>
                                         <input type="text" name="fromDate" class="form-control">
@@ -348,7 +352,7 @@ include 'pds-php-syntax.php';
                                     </div>
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Date of Examination/Conferment:</span>
-                                        <input type="date" name="examination" class="form-control">
+                                        <input type="text" name="examination" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -356,14 +360,14 @@ include 'pds-php-syntax.php';
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Place of Examination/Conferment:</span>
                                         <input type="text" name="place" class="form-control">
                                     </div>
-                                    <p>License:</p>
+                                    <p><strong>License:</strong></p>
                                     <div class="input-group input-group-sm mb-3">                                        
                                         <span class="mx-2"></span>
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Number:</span>
                                         <input type="text" name="number" class="form-control">
                                         <span class="mx-2"></span>
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Date of Validity:</span>
-                                        <input type="date" name="validity" class="form-control">
+                                        <input type="text" name="validity" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -402,13 +406,17 @@ include 'pds-php-syntax.php';
                                 <h3> Work Experience</h3>
                                 <div class="row align-items-start mt-2">
                                     <div class="col">
-                                        <p>Inclusive Dates </p>
+                                        <p><strong>Inclusive Dates</strong></p>
                                         <div class="input-group input-group-sm mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
-                                            <input type="date" name="work-from-date" class="form-control">
+                                            <input type="text" name="work-from-date" class="form-control">
                                             <span class="mx-2"></span>
                                             <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                            <input type="date" name="work-to-date" class="form-control">
+                                            <input type="text" name="work-to-date" class="form-control">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Position Title:</span>
+                                            <input type="text" name="position_title" class="form-control">
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Department/Agency/Office:</span>
@@ -477,13 +485,13 @@ include 'pds-php-syntax.php';
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Name and Address of Organization:</span>
                                             <input type="text" name="organization" class="form-control">                                                                
                                         </div>
-                                        <p>Inclusive Dates</p>
+                                        <p><strong>Inclusive Dates</strong></p>
                                         <div class="input-group input-group-sm mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-sm"> From:</span>
-                                            <input type="date" name="voluntary-from-date" class="form-control">
+                                            <input type="text" name="voluntary-from-date" class="form-control">
                                             <span class="mx-2"></span>
                                             <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                            <input type="date" name="voluntary-to-date" class="form-control">
+                                            <input type="text" name="voluntary-to-date" class="form-control">
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Number of Hours:</span>
@@ -533,13 +541,13 @@ include 'pds-php-syntax.php';
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Title of Learning and Development Interventions/Training Programs:</span>
                                         <input type="text" name="title" class="form-control">
                                     </div>
-                                    <p>Inclusive Dates of Attendance</p>
+                                    <p><strong> Dates of Attendance</strong></p>
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
-                                        <input type="date" name="training-from-date" class="form-control">
+                                        <input type="text" name="training-from-date" class="form-control">
                                         <span class="mx-2"></span>
                                         <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                        <input type="date" name="training-to-date" class="form-control">
+                                        <input type="text" name="training-to-date" class="form-control">
                                     </div>
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Number of Hours:</span>
@@ -587,6 +595,45 @@ include 'pds-php-syntax.php';
                                     <input type="hidden" name="training-details" id="training-details-input" value="<?php echo htmlspecialchars(json_encode($trainingDetails)); ?>">
                                 </table>
                             </div>
+                            <hr>
+                            <h3>Other Information</h3>
+                                <div class="row align-items-start mt-2">
+                                    <div class="col">
+                                        <div class="input-group input-group-sm mb-3">
+                                             <span class="input-group-text" id="inputGroup-sizing-sm">Special Skills and Hobbies:</span>
+                                            <input type="text" name="skills_hobbies" class="form-control">                                                                
+                                        </div>                                        
+                                        <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Non-Academic Distinction:</span>
+                                            <input type="text" name="recognition" class="form-control">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Membership in Association:</span>
+                                            <input type="text" name="association" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="text-end">  
+                                    <button type="button" name="addBtn" class="btn btn-primary addbtnOther" >Add</button>
+                                </div>
+                                <h5 class="mt-4">Preview</h5> 
+                                <div class="voluntary-div m-0 overflow-scroll">                          
+                                <table class="table table-secondary table-striped text-center mt-3  other-table">
+                                    <thead>
+                                        <tr>                                                                                        
+                                            <th>Skills</th>
+                                            <th>Recognition</th>                                                                                                                                  
+                                            <th>Association</th>                                                                                                                                  
+                                            <th>Action</th>
+                                        </tr>                                                                           
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                    <input type="hidden" name="userid" value="<?php echo $userID; ?>">
+                                    <input type="hidden" name="other-details" id="other-details-input" value="<?php echo htmlspecialchars(json_encode($otherDetails)); ?>">
+                                </table>
+                                </div>
                                       
                 </div>
                 <div class="modal-footer">

@@ -1,3 +1,65 @@
+<?php
+// include '../header.php';
+// include '../config.php';
+// $userID = $_SESSION['id'];
+if(isset($_POST['save_training'])){
+    $updateTrainingDetails = isset($_POST['update-training-details']) ? json_decode($_POST['update-training-details'], true) : array();
+
+    foreach ($updateTrainingDetails as $updateTraining) {
+        $userID = $_SESSION['id'];
+        $title = $updateTraining['up_title'];
+        $trainingfrom = $updateTraining['up_trainingfrom'];
+        $trainingto = $updateTraining['up_trainingto'];
+        $duration = $updateTraining['up_duration'];
+        $type = $updateTraining['up_type'];             
+        $sponsor = $updateTraining['up_sponsor'];             
+
+        $queryUpdatetrainingDetails = "INSERT INTO `training_programs_tb` (userid, title, training_from_date, training_to_date, duration, type, sponsor) VALUES (?,?,?,?,?,?,?)";
+        $stmt_updateTraining = $con->prepare($queryUpdatetrainingDetails);
+
+        $stmt_updateTraining->bind_param('issssss', $userID, $title, $trainingfrom, $trainingto, $duration, $type, $sponsor);
+
+
+        $execute_updateTraining = $stmt_updateTraining->execute();
+
+        if (!$execute_updateTraining) {
+            die(mysqli_error($con));
+        } 
+    }
+    $stmt_updateTraining->close();
+    unset($_SESSION['updateTrainingDetails']);
+    
+    //notification
+    $queryTrainingNotification = "INSERT INTO `notification_tb` (fullname, faculty_type, date_upload, updated_part) VALUES (?, ?, ?, ?)";
+
+    $stmt_trainingNotification = $con->prepare($queryTrainingNotification);
+
+    $stmt_trainingNotification->bind_param('ssss', $fullname, $facultyType, $date, $section);
+
+    $fullname = $_SESSION['fullname'];
+    date_default_timezone_set("Asia/Manila");
+    $date = date("Y-m-d");
+    $section = "edited his/her Training Programs Details";
+    $facultyType = $_SESSION['type'];
+
+    $execute_trainingNotification = $stmt_trainingNotification->execute();
+
+    if (!$execute_trainingNotification){        
+      echo "Error: " . $stmt_trainingNotification->error;
+    }else{
+        echo "Notification inserted successfully.";
+      $stmt_trainingNotification->close(); 
+            
+    }
+    $con->close(); 
+    
+
+}
+
+$updateTrainingDetails = isset($_SESSION['updateTrainingDetails']) ? $_SESSION['updateTrainingDetails'] : array();
+
+?>
+ <!-- <button type="button" class="btn btn-success px-3 edit-btn-1"data-bs-toggle="modal" data-bs-target="#exampleModal7">Edit</button> -->
 <div class="modal fade " id="exampleModal7"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel7" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -14,8 +76,7 @@
                                             <th colspan="2">Inclusive Dates</th>                                             
                                             <th>Number of Hours</th>
                                             <th>Type of LD</th>                                                                                                                                  
-                                            <th>Sponsor/conductor</th>
-                                            <th>action</th>
+                                            <th>Sponsor/conductor</th>                                            
                                         </tr> 
                                         <tr>
                                             <th></th>
@@ -23,11 +84,27 @@
                                             <th>To</th>                                            
                                             <th></th>
                                             <th></th>
-                                            <th></th>                                            
-                                            <th></th>                                            
+                                            <th></th>                                          
+                                                                                      
                                         </tr>                                     
                                     </thead>
                                     <tbody>
+                                        <?php
+                                         $sqlSelectTraining = mysqli_query($con,"SELECT * FROM `training_programs_tb` where userid = $userID");
+                                         while($rowTraining = mysqli_fetch_array($sqlSelectTraining)){
+                                            echo '
+                                            <tr>
+                                            <td>'.$rowTraining['title'].'</td>
+                                            <td>'.$rowTraining['training_from_date'].'</td>
+                                            <td>'.$rowTraining['training_to_date'].'</td>
+                                            <td>'.$rowTraining['duration'].'</td>
+                                            <td>'.$rowTraining['type'].'</td>
+                                            <td>'.$rowTraining['sponsor'].'</td>
+                                            </tr>';
+                                         }
+
+
+                                        ?>
                                         
                                     </tbody>                                    
                                 </table>
@@ -44,10 +121,10 @@
                                     <p>Inclusive Dates of Attendance</p>
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
-                                        <input type="date" name="up_training-from-date" class="form-control">
+                                        <input type="text" name="up_training-from-date" class="form-control">
                                         <span class="mx-2"></span>
                                         <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                        <input type="date" name="up_training-to-date" class="form-control">
+                                        <input type="text" name="up_training-to-date" class="form-control">
                                     </div>
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Number of Hours:</span>
@@ -144,12 +221,12 @@
         // Update the hidden input field with the updated civil service details array
         var currentDetails = JSON.parse($('#update-training-details-input').val());
         currentDetails.push({
-            title: up_title,
-            trainingfrom: up_trainingfrom,
-            trainingto: up_trainingto,
-            duration: up_duration,
-            type: up_type,         
-            sponsor: up_sponsor          
+            up_title: up_title,
+            up_trainingfrom: up_trainingfrom,
+            up_trainingto: up_trainingto,
+            up_duration: up_duration,
+            up_type: up_type,         
+            up_sponsor: up_sponsor          
             
         });
         $('#update-training-details-input').val(JSON.stringify(currentDetails));

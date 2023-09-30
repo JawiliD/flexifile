@@ -41,6 +41,7 @@ if (isset($_POST['login'])) {
         $_SESSION['email'] = $rowValidate['email'];
         $_SESSION['fullname'] = $rowValidate['fullname'];
         $_SESSION['role'] = $rowValidate['role'];
+        $_SESSION['type'] = $rowValidate['type'];
         $_SESSION['id'] = $rowValidate['id'];
       
 

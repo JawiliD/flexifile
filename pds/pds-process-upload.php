@@ -69,125 +69,183 @@ if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOA
         // Establish a database connection
         $conn = connectToDatabase($servername, $username, $password, $dbname);
 
+        function validateAndSanitizeInput($input) {
+            // Remove leading/trailing white spaces
+            $input = trim($input);
+            
+            // Use filter_var to validate and sanitize input
+            $input = filter_var($input, FILTER_SANITIZE_STRING);
+        
+            return $input;
+        }
+
         // Process the first sheet 'C1'
         $worksheet1 = $spreadsheet->getSheetByName('C1');
 
         // Define columns for the 'personalinfo_tb' table
         $personal_info_data = array(
             $userID,
-            $worksheet1->getCell('D10')->getValue(),  // surname
-            $worksheet1->getCell('D11')->getValue(),  // firstname
-            $worksheet1->getCell('D12')->getValue(),  // midname
+            validateAndSanitizeInput($worksheet1->getCell('D10')->getValue()),  // surname
+            validateAndSanitizeInput($worksheet1->getCell('D11')->getValue()),  // firstname
+            validateAndSanitizeInput($worksheet1->getCell('D12')->getValue()),  // midname
             $worksheet1->getCell('L11')->getValue(),  // extension
-            $worksheet1->getCell('D13')->getValue(),  // birthday
-            $worksheet1->getCell('D15')->getValue(),  // birthplace
-            $worksheet1->getCell('D16')->getValue(),  // sex
-            $worksheet1->getCell('D17')->getValue(),  // civil_status
-            $worksheet1->getCell('D22')->getValue(),  // height
-            $worksheet1->getCell('D24')->getValue(),  // weight
-            $worksheet1->getCell('D25')->getValue(),  // bloodtype
-            $worksheet1->getCell('D27')->getValue(),  // gsis
-            $worksheet1->getCell('D29')->getValue(),  // pagibig
-            $worksheet1->getCell('D31')->getValue(),  // philhealth
-            $worksheet1->getCell('D32')->getValue(),  // sss
-            $worksheet1->getCell('D33')->getValue(),  // tin
-            $worksheet1->getCell('D34')->getValue(),  // agency_no
-            $worksheet1->getCell('J13')->getValue(),  // citizenship
-            $worksheet1->getCell('I17')->getValue(),  // residential_house_no
-            $worksheet1->getCell('L17')->getValue(),  // residential_street
-            $worksheet1->getCell('I19')->getValue(),  // residential_subdivision
-            $worksheet1->getCell('L19')->getValue(),  // residential_barangay
-            $worksheet1->getCell('I22')->getValue(),  // residential_municipality
-            $worksheet1->getCell('L22')->getValue(),  // residential_province
-            $worksheet1->getCell('I24')->getValue(),  // residential_zipcode
-            $worksheet1->getCell('I25')->getValue(),  // permanent_house_no
-            $worksheet1->getCell('L25')->getValue(),  // permanent_street
-            $worksheet1->getCell('I27')->getValue(),  // permanent_subdivision
-            $worksheet1->getCell('L27')->getValue(),  // permanent_barangay
-            $worksheet1->getCell('I29')->getValue(),  // permanent_municipality
-            $worksheet1->getCell('L29')->getValue(),  // permanent_province
-            $worksheet1->getCell('I31')->getValue(),  // permanent_zipcode
-            $worksheet1->getCell('I32')->getValue(),  // telephone
-            $worksheet1->getCell('I33')->getValue(),  // mobile_no
-            $worksheet1->getCell('I34')->getValue()   // email
+            validateAndSanitizeInput($worksheet1->getCell('D13')->getValue()),  // birthday
+            validateAndSanitizeInput($worksheet1->getCell('D15')->getValue()),  // birthplace
+            validateAndSanitizeInput($worksheet1->getCell('D16')->getValue()),  // sex
+            validateAndSanitizeInput($worksheet1->getCell('D17')->getValue()),  // civil_status
+            validateAndSanitizeInput($worksheet1->getCell('D22')->getValue()),  // height
+            validateAndSanitizeInput($worksheet1->getCell('D24')->getValue()),  // weight
+            validateAndSanitizeInput($worksheet1->getCell('D25')->getValue()),  // bloodtype
+            validateAndSanitizeInput($worksheet1->getCell('D27')->getValue()),  // gsis
+            validateAndSanitizeInput($worksheet1->getCell('D29')->getValue()),  // pagibig
+            validateAndSanitizeInput($worksheet1->getCell('D31')->getValue()),  // philhealth
+            validateAndSanitizeInput($worksheet1->getCell('D32')->getValue()),  // sss
+            validateAndSanitizeInput($worksheet1->getCell('D33')->getValue()),  // tin
+            validateAndSanitizeInput($worksheet1->getCell('D34')->getValue()),  // agency_no
+            validateAndSanitizeInput($worksheet1->getCell('J13')->getValue()),  // citizenship
+            validateAndSanitizeInput($worksheet1->getCell('I17')->getValue()),  // residential_house_no
+            validateAndSanitizeInput($worksheet1->getCell('L17')->getValue()),  // residential_street
+            validateAndSanitizeInput($worksheet1->getCell('I19')->getValue()),  // residential_subdivision
+            validateAndSanitizeInput($worksheet1->getCell('L19')->getValue()),  // residential_barangay
+            validateAndSanitizeInput($worksheet1->getCell('I22')->getValue()),  // residential_municipality
+            validateAndSanitizeInput($worksheet1->getCell('L22')->getValue()),  // residential_province
+            validateAndSanitizeInput($worksheet1->getCell('I24')->getValue()),  // residential_zipcode
+            validateAndSanitizeInput($worksheet1->getCell('I25')->getValue()),  // permanent_house_no
+            validateAndSanitizeInput($worksheet1->getCell('L25')->getValue()),  // permanent_street
+            validateAndSanitizeInput($worksheet1->getCell('I27')->getValue()),  // permanent_subdivision
+            validateAndSanitizeInput($worksheet1->getCell('L27')->getValue()),  // permanent_barangay
+            validateAndSanitizeInput($worksheet1->getCell('I29')->getValue()),  // permanent_municipality
+            validateAndSanitizeInput($worksheet1->getCell('L29')->getValue()),  // permanent_province
+            validateAndSanitizeInput($worksheet1->getCell('I31')->getValue()),  // permanent_zipcode
+            validateAndSanitizeInput($worksheet1->getCell('I32')->getValue()),  // telephone
+            validateAndSanitizeInput($worksheet1->getCell('I33')->getValue()),  // mobile_no
+            validateAndSanitizeInput($worksheet1->getCell('I34')->getValue())   // email
         );
+        
 
-        // Define the row numbers you want to process for children's data
         $rowNumbersChildren = [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]; // Update this array as needed
 
+        // Define arrays for children's data
+        $children_names = [];
+        $date_of_births = [];
+        
         foreach ($rowNumbersChildren as $rowNumber) {
-            // Define arrays for each field you want to extract for children's data
-            $children_names = [];
-            $date_of_births = [];
-
             // Fetch data from the Excel worksheet for the current row
-            foreach ($rowNumbersChildren as $row) {
-                $children_names[] = $worksheet1->getCell("I$row")->getValue();
-                $date_of_births[] = $worksheet1->getCell("M$row")->getValue();
+            $children_names[] = $worksheet1->getCell("I$rowNumber")->getValue();
+            $date_of_births[] = $worksheet1->getCell("M$rowNumber")->getValue();
+        }
+        
+        // Prepare the data for insertion into the family_children_tb
+        $familychildren_data = [];
+        foreach ($children_names as $key => $childName) {
+            // Check if both childName and childbirth are not empty
+            if (!empty($childName) && !empty($date_of_births[$key])) {
+                $familychildren_data[] = [
+                    $userID,
+                    validateAndSanitizeInput($childName),
+                    validateAndSanitizeInput($date_of_births[$key])
+                ];
             }
         }
-
+        
+        // Define the SQL statement
+        $family_children_tb_sql = "INSERT INTO family_children_tb (userid, childname, childbirth) VALUES (?, ?, ?)";
+        
+        // Loop through the data and insert it into the database
+        foreach ($familychildren_data as $childData) {
+            if (insertDataIntoTable($conn, $family_children_tb_sql, $childData)) {
+                // Insertion successful
+            } else {
+                // Insertion failed
+                echo " " . $conn->error;
+            }
+        }
 
         $family_background_data = array(
             $userID,
-            $worksheet1->getCell('D36')->getValue(),  // spouse_surname
-            $worksheet1->getCell('D37')->getValue(),  // spouse_firstname
-            $worksheet1->getCell('D38')->getValue(),  // spouse_middlename
-            $worksheet1->getCell('D39')->getValue(),  // occupation
-            $worksheet1->getCell('D40')->getValue(),  // employer
-            $worksheet1->getCell('D41')->getValue(),  // business address
-            $worksheet1->getCell('D42')->getValue(),  // telephone no
-            $worksheet1->getCell('G37')->getValue(),  // spouse_extension
-            $worksheet1->getCell('D43')->getValue(),  // father_surname
-            $worksheet1->getCell('D44')->getValue(),  // father_firstname
-            $worksheet1->getCell('D45')->getValue(),  // father_middlename
-            $worksheet1->getCell('G44')->getValue(),  // father_name_extension
-            $worksheet1->getCell('D47')->getValue(),  // mother_surname
-            $worksheet1->getCell('D48')->getValue(),  // mother_firstname
-            $worksheet1->getCell('D49')->getValue()   // mother_middlename
+            validateAndSanitizeInput($worksheet1->getCell('D36')->getValue()),  // spouse_surname
+            validateAndSanitizeInput($worksheet1->getCell('D37')->getValue()),  // spouse_firstname
+            validateAndSanitizeInput($worksheet1->getCell('D38')->getValue()),  // spouse_middlename
+            validateAndSanitizeInput($worksheet1->getCell('D39')->getValue()),  // occupation
+            validateAndSanitizeInput($worksheet1->getCell('D40')->getValue()),  // employer
+            validateAndSanitizeInput($worksheet1->getCell('D41')->getValue()),  // business address
+            validateAndSanitizeInput($worksheet1->getCell('D42')->getValue()),  // telephone no
+            validateAndSanitizeInput($worksheet1->getCell('G37')->getValue()),  // spouse_extension
+            validateAndSanitizeInput($worksheet1->getCell('D43')->getValue()),  // father_surname
+            validateAndSanitizeInput($worksheet1->getCell('D44')->getValue()),  // father_firstname
+            validateAndSanitizeInput($worksheet1->getCell('D45')->getValue()),  // father_middlename
+            validateAndSanitizeInput($worksheet1->getCell('G44')->getValue()),  // father_name_extension
+            validateAndSanitizeInput($worksheet1->getCell('D47')->getValue()),  // mother_surname
+            validateAndSanitizeInput($worksheet1->getCell('D48')->getValue()),  // mother_firstname
+            validateAndSanitizeInput($worksheet1->getCell('D49')->getValue())   // mother_middlename
         );
-        $familychildren_data =array(
-            $userID,
-            $childname = implode(', ', $children_names),
-            $childbirth = implode(', ', $date_of_births),
+        
 
-        );
+        $rowNumbersEduc = [54, 55, 56, 57, 58, 59, 60, 61]; // Update this array as needed
 
-        // Define the row numbers you want to process
-        $columns = ['B', 'D', 'G','J','K','L','M','N']; // Column letters for your data
-        $rowStart = 54; 
-        $rowEnd = 61; 
+        // Define arrays for educational data
+        $educ_level = [];
+        $educ_schoolname = [];
+        $educ_degree = [];
+        $educ_from = [];
+        $educ_to = [];
+        $educ_unit = [];
+        $educ_graduate = [];
+        $educ_honor = [];
 
-        $result = [];
-
-        foreach ($columns as $column) {
-            $dataList = [];
-            for ($i = $rowStart; $i <= $rowEnd; $i++) {
-                $value = $worksheet1->getCell($column . $i)->getValue();
-                // Check if the key exists in the array before accessing it
-                if (isset($value)) {
-                    $dataList[] = $value;
-                } else {
-                    $dataList[] = ''; // Set a default value (an empty string) for undefined keys
-                }
-            }
-            $result[] = implode(' , ', $dataList);
+        foreach ($rowNumbersEduc as $rowNumber2) {
+            // Fetch data from the Excel worksheet for the current row
+            $educ_level[] = validateAndSanitizeInput($worksheet1->getCell("B$rowNumber2")->getValue());
+            $educ_schoolname[] = validateAndSanitizeInput($worksheet1->getCell("D$rowNumber2")->getValue());
+            $educ_degree[] = validateAndSanitizeInput($worksheet1->getCell("G$rowNumber2")->getValue());
+            $educ_from[] = validateAndSanitizeInput($worksheet1->getCell("J$rowNumber2")->getValue());
+            $educ_to[] = validateAndSanitizeInput($worksheet1->getCell("K$rowNumber2")->getValue());
+            $educ_unit[] = validateAndSanitizeInput($worksheet1->getCell("L$rowNumber2")->getValue());
+            $educ_graduate[] = validateAndSanitizeInput($worksheet1->getCell("M$rowNumber2")->getValue());
+            $educ_honor[] = validateAndSanitizeInput($worksheet1->getCell("N$rowNumber2")->getValue());
         }
 
-        list($level,$schoolName, $degree,$fromDate,$toDate,$units,$graduated,$honors) = $result;
+        // Prepare the data for insertion into the education_tb
+        $education_data = [];
+        foreach ($educ_level as $key => $level) {
+            if (!empty($level) && !empty($educ_honor[$key]) && !empty($educ_unit[$key])) {
+                $education_data[] = [
+                    $userID,
+                    $level,
+                    $educ_schoolname[$key],
+                    $educ_degree[$key],
+                    $educ_from[$key],
+                    $educ_to[$key],
+                    $educ_unit[$key],
+                    $educ_graduate[$key],
+                    $educ_honor[$key]
+                ];
+            }
+        }
 
+        // Define the SQL statement
+        $education_tb_sql = "INSERT INTO education_tb (
+            userid,
+            level,
+            schoolName,
+            degree,
+            fromDate,
+            toDate,
+            units,
+            graduated,
+            honors
+        ) VALUES (?,?,?,?,?,?,?,?,?)";
 
-        $education_data = array(
-                $userID,
-                $level,
-                $schoolName,
-                $degree,
-                $fromDate,
-                $toDate,
-                $units,
-                $graduated,
-                $honors,
-        );
+        // Loop through the data and insert it into the database
+        foreach ($education_data as $educData) {
+            if (insertDataIntoTable($conn, $education_tb_sql, $educData)) {
+                // Insertion successful
+            } else {
+                // Insertion failed
+                echo "Insertion into education_tb failed: " . $conn->error;
+            }
+        }
+
         
 
         function setDefaultValues(&$data) {
@@ -201,8 +259,6 @@ if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOA
         // Call the function for each data section
         setDefaultValues($personal_info_data);
         setDefaultValues($family_background_data);
-        setDefaultValues($education_data);
-        setDefaultValues($familychildren_data);
 
         // Define SQL query for 'personalinfo_tb'
         $personal_info_tb_sql = "INSERT INTO personal_info_tb (
@@ -227,123 +283,108 @@ if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOA
         if (insertDataIntoTable($conn, $family_background_tb_sql, $family_background_data)) {
             echo "";
         }
-        $family_children_tb_sql ="INSERT INTO family_children_tb(
-            userid, childname, childbirth
-        )
-        VALUES (?,?,?)";
-        if (insertDataIntoTable($conn, $family_children_tb_sql, $familychildren_data)) {
-            echo "";
-        }
-
-        $education_tb_sql = "INSERT INTO education_tb (
-            userid,
-            level,
-            schoolName,
-            degree,
-            fromDate,
-            toDate,
-            units,
-            graduated,
-            honors
-        ) VALUES (?,?,?,?,?,?,?,?,?)";
-
-        // Prepare statement and insert data into 'backgroundeduc_tb'
-        if (insertDataIntoTable($conn, $education_tb_sql, $education_data)) {
-            echo "";
-         }
         // Process the second sheet 'C2'
         $worksheet2 = $spreadsheet->getSheetByName('C2');
 
-        // Extract data from 'C2'
-        $columns = ['A', 'F', 'G', 'I', 'L', 'M']; // Column letters for your data
-        $rowStart = 5; 
-        $rowEnd = 11; 
 
-        $result = [];
 
-        foreach ($columns as $column) {
-            $dataList = [];
-            for ($i = $rowStart; $i <= $rowEnd; $i++) {
-                $value = $worksheet2->getCell($column . $i)->getValue();
-                // Check if the key exists in the array before accessing it
-                if (isset($value)) {
-                    $dataList[] = $value;
-                } else {
-                    $dataList[] = ''; // Set a default value (an empty string) for undefined keys
-                }
-            }
-            $result[] = implode(', ', $dataList);
+        $rowNumbersCs = [5, 6, 7, 8, 9, 10, 11]; // Update this array as needed
+
+        // Define arrays for civil service data
+        $cs_career = [];
+        $cs_rating = [];
+        $cs_examination = [];
+        $cs_place = [];
+        $cs_number = [];
+        $cs_validity = [];
+
+        foreach ($rowNumbersCs as $rowNumber3) {
+            // Fetch data from the Excel worksheet for the current row
+            $cs_career[] = validateAndSanitizeInput($worksheet2->getCell("A$rowNumber3")->getValue());
+            $cs_rating[] = validateAndSanitizeInput($worksheet2->getCell("F$rowNumber3")->getValue());
+            $cs_examination[] = validateAndSanitizeInput($worksheet2->getCell("G$rowNumber3")->getValue());
+            $cs_place[] = validateAndSanitizeInput($worksheet2->getCell("I$rowNumber3")->getValue());
+            $cs_number[] = validateAndSanitizeInput($worksheet2->getCell("L$rowNumber3")->getValue());
+            $cs_validity[] = validateAndSanitizeInput($worksheet2->getCell("M$rowNumber3")->getValue());
         }
 
-        list($career, $rating, $examination, $place, $number, $validity) = $result;
-
-        $columns = ['A', 'C', 'D', 'G', 'J', 'K', 'L', 'M']; // Column letters for your data
-
-        $result = [];
-
-        foreach ($columns as $column) {
-            $dataList = [];
-            for ($i = 18; $i <= 46; $i++) {
-                $value = $worksheet2->getCell($column . $i)->getValue();
-                // Check if the key exists in the array before accessing it
-                if (isset($value)) {
-                    $dataList[] = $value;
-                } else {
-                    $dataList[] = ''; // Set a default value (an empty string) for undefined keys
-                }
-            }
-            $result[] = implode(', ', $dataList);
-        }
-
-        list($work_from_date, $work_to_date, $position_title, $department, $salary, $paygrade, $appointment, $gov_service) = $result;
-
-        $data2 = array(
-            $userID,
-            $career,
-            $rating,
-            $examination,
-            $place,
-            $number,
-            $validity,
-        );
-
-        $data3 = array(
-            $userID,
-            $work_from_date,
-            $work_to_date,
-            $position_title,
-            $department,
-            $salary,
-            $paygrade,
-            $appointment,
-            $gov_service,
-        );
-        // Corrected code for $data2
-        foreach ($data2 as &$value) {
-            if ($value === null) {
-                $value = ''; // Set a default value (an empty string) for NULL values
+        // Prepare the data for insertion into the civil_service_tb
+        $civilservice_data = [];
+        foreach ($cs_career as $key => $career) {
+            if (!empty($career) && !empty($cs_rating[$key]) && !empty($cs_examination[$key]) && !empty($cs_place[$key]) && !empty($cs_number[$key]) && !empty($cs_validity[$key])) {
+                $civilservice_data[] = [
+                    $userID,
+                    $career,
+                    $cs_rating[$key],
+                    $cs_examination[$key],
+                    $cs_place[$key],
+                    $cs_number[$key],
+                    $cs_validity[$key]
+                ];
             }
         }
 
-        // Corrected code for $data3
-        foreach ($data3 as &$value) {
-            if ($value === null) {
-                $value = ''; // Set a default value (an empty string) for NULL values
-            }
-        }
-
-        
-
-        // Define SQL query for 'civilservice_tb'
+        // Define the SQL statement
         $civil_service_tb_sql = "INSERT INTO civil_service_tb (
             userid, career, rating, examination, place, number, validity
-        ) VALUES (?,?, ?, ?,?,?,?)";
+        ) VALUES (?,?,?,?,?,?,?)";
 
-        // Prepare statement and insert data into 'civilservice_tb'
-        if (insertDataIntoTable($conn, $civil_service_tb_sql, $data2)) {
-            echo "";
+        // Loop through the data and insert it into the database
+        foreach ($civilservice_data as $csData) {
+            if (insertDataIntoTable($conn, $civil_service_tb_sql, $csData)) {
+                // Insertion successful
+            } else {
+                // Insertion failed
+                echo "Insertion into civil_service_tb failed: " . $conn->error;
+            }
         }
-        $work_experience_tb_sql ="INSERT INTO work_experience_tb(
+
+
+        $rowNumbersWork = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]; // Update this array as needed
+
+        // Define arrays for work experience data
+        $work_from = [];
+        $work_to = [];
+        $work_title = [];
+        $work_department = [];
+        $work_salary = [];
+        $work_paygrade = [];
+        $work_appointment = [];
+        $work_govservice = [];
+        
+        foreach ($rowNumbersWork as $rowNumber4) {
+            // Fetch data from the Excel worksheet for the current row
+            $work_from[] = validateAndSanitizeInput($worksheet2->getCell("A$rowNumber4")->getValue());
+            $work_to[] = validateAndSanitizeInput($worksheet2->getCell("C$rowNumber4")->getValue());
+            $work_title[] = validateAndSanitizeInput($worksheet2->getCell("D$rowNumber4")->getValue());
+            $work_department[] = validateAndSanitizeInput($worksheet2->getCell("G$rowNumber4")->getValue());
+            $work_salary[] = validateAndSanitizeInput($worksheet2->getCell("J$rowNumber4")->getValue());
+            $work_paygrade[] = validateAndSanitizeInput($worksheet2->getCell("K$rowNumber4")->getValue());
+            $work_appointment[] = validateAndSanitizeInput($worksheet2->getCell("L$rowNumber4")->getValue());
+            $work_govservice[] = validateAndSanitizeInput($worksheet2->getCell("M$rowNumber4")->getValue());
+        }
+        
+        // Prepare the data for insertion into the work_experience_tb
+        $workexperience_data = [];
+        foreach ($work_from as $key => $work_from_date) {
+            if (!empty($work_from_date) && !empty($work_to[$key]) && !empty($work_title[$key]) && !empty($work_department[$key])
+             && !empty($work_salary[$key]) && !empty($work_paygrade[$key]) && !empty($work_appointment[$key]) && !empty($work_govservice[$key])) {
+                $workexperience_data[] = [
+                    $userID,
+                    $work_from_date,
+                    $work_to[$key],
+                    $work_title[$key],
+                    $work_department[$key],
+                    $work_salary[$key],
+                    $work_paygrade[$key],
+                    $work_appointment[$key],
+                    $work_govservice[$key]
+                ];
+            }
+        }
+        
+        // Define the SQL statement
+        $work_experience_tb_sql = "INSERT INTO work_experience_tb (
             userid,
             work_from_date,
             work_to_date,
@@ -353,135 +394,118 @@ if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOA
             paygrade,
             appointment,
             gov_service
-        )
-        VALUES (?,?,?,?,?,?,?,?,?)";
-         if (insertDataIntoTable($conn, $work_experience_tb_sql, $data3)) {
-            echo "";
+        ) VALUES (?,?,?,?,?,?,?,?,?)";
+        
+        // Loop through the data and insert it into the database
+        foreach ($workexperience_data as $workData) {
+            if (insertDataIntoTable($conn, $work_experience_tb_sql, $workData)) {
+                // Insertion successful
+            } else {
+                // Insertion failed
+                echo "Insertion into work_experience_tb failed: " . $conn->error;
+            }
         }
-        // Process the second sheet 'C3'
+        
+
+        // Process the third sheet 'C3'
         $worksheet3 = $spreadsheet->getSheetByName('C3');
         // Extract data from 'C3'
 
-        $columns = ['A', 'E', 'G', 'F', 'G', 'H']; // Column letters for your data
-        $rowStart = 6; 
-        $rowEnd = 8; 
 
-        $result = [];
+        $rowNumbersVoluntary = [6, 7, 8]; // Update this array as needed
 
-        foreach ($columns as $column) {
-            $dataList = [];
-            for ($i = $rowStart; $i <= $rowEnd; $i++) {
-                $value = $worksheet3->getCell($column . $i)->getValue();
-                // Check if the key exists in the array before accessing it
-                if (isset($value)) {
-                    $dataList[] = $value;
-                } else {
-                    $dataList[] = ''; // Set a default value (an empty string) for undefined keys
-                }
-            }
-            $result[] = implode(' , ', $dataList);
+        // Define arrays for voluntary work data
+        $voluntary_organization = [];
+        $voluntary_from = [];
+        $voluntary_to = [];
+        $voluntary_hours = [];
+        $voluntary_position = [];
+
+        foreach ($rowNumbersVoluntary as $rowNumber4) {
+            // Fetch data from the Excel worksheet for the current row
+            $voluntary_organization[] = validateAndSanitizeInput($worksheet3->getCell("A$rowNumber4")->getValue());
+            $voluntary_from[] = validateAndSanitizeInput($worksheet3->getCell("E$rowNumber4")->getValue());
+            $voluntary_to[] = validateAndSanitizeInput($worksheet3->getCell("F$rowNumber4")->getValue());
+            $voluntary_hours[] = validateAndSanitizeInput($worksheet3->getCell("G$rowNumber4")->getValue());
+            $voluntary_position[] = validateAndSanitizeInput($worksheet3->getCell("H$rowNumber4")->getValue());
         }
 
-        list($organization, $from_date, $to_date,$hours, $position) = $result;
-
-        $columns = ['A', 'E', 'F', 'G', 'H', 'I']; // Column letters for your data
-        $rowStart = 15; 
-        $rowEnd = 43; 
-
-        $result = [];
-
-        foreach ($columns as $column) {
-            $dataList = [];
-            for ($i = $rowStart; $i <= $rowEnd; $i++) {
-                $value = $worksheet3->getCell($column . $i)->getValue();
-                // Check if the key exists in the array before accessing it
-                if (isset($value)) {
-                    $dataList[] = $value;
-                } else {
-                    $dataList[] = ''; // Set a default value (an empty string) for undefined keys
-                }
-            }
-            $result[] = implode(' , ', $dataList);
-        }
-
-        list($title, $training_from_date, $training_to_date, $duration, $type, $sponsor) = $result;
-
-        $columns = ['A', 'C', 'I']; // Column letters for your data
-        $rowStart = 47; 
-        $rowEnd = 51; 
-
-        $result = [];
-
-        foreach ($columns as $column) {
-            $dataList = [];
-            for ($i = $rowStart; $i <= $rowEnd; $i++) {
-                $value = $worksheet3->getCell($column . $i)->getValue();
-                // Check if the key exists in the array before accessing it
-                if (isset($value)) {
-                    $dataList[] = $value;
-                } else {
-                    $dataList[] = ''; // Set a default value (an empty string) for undefined keys
-                }
-            }
-            $result[] = implode(' , ', $dataList);
-        }
-
-        list($skills_hobbie	, $recognition, $association) = $result;
-
-        $data4 = array(
-            $userID,
-            $organization,
-            $from_date,
-            $to_date,
-            $hours,
-            $position,
-            
-        );
-        $data5 = array(
-            $userID,
-            $title,
-            $training_from_date,
-            $training_to_date,
-            $duration,
-            $type,
-            $sponsor,
-            
-        );
-        $data6 =array(
-            $userID,
-            $skills_hobbie,
-            $recognition,
-            $association,
-        );
-        foreach ($data4 as &$value) {
-            if ($value === null) {
-                $value = ''; // Set a default value (an empty string) for NULL values
-            }
-        }
-        foreach ($data5 as &$value) {
-            if ($value === null) {
-                $value = ''; // Set a default value (an empty string) for NULL values
-            }
-        }
-        foreach ($data6 as &$value) {
-            if ($value === null) {
-                $value = ''; // Set a default value (an empty string) for NULL values
+        // Prepare the data for insertion into the voluntary_work_tb
+        $voluntarywork_data = [];
+        foreach ($voluntary_organization as $key => $organization) {
+            if (!empty($organization) && !empty($voluntary_from[$key]) && !empty($voluntary_to[$key]) && !empty($voluntary_hours[$key])
+            && !empty($voluntary_position[$key])) {
+                $voluntarywork_data[] = [
+                    $userID,
+                    $organization,
+                    $voluntary_from[$key],
+                    $voluntary_to[$key],
+                    $voluntary_hours[$key],
+                    $voluntary_position[$key]
+                ];
             }
         }
 
-        $voluntary_work_tb_sql ="INSERT INTO voluntary_work_tb(
+        // Define the SQL statement
+        $voluntary_work_tb_sql = "INSERT INTO voluntary_work_tb (
             userid,
             organization,
             from_date,
             to_date,
             hours,
             position
-        )
-        VALUES (?,?,?,?,?,?)";
-         if (insertDataIntoTable($conn, $voluntary_work_tb_sql, $data4)) {
-            echo "";
+        ) VALUES (?,?,?,?,?,?)";
+
+        // Loop through the data and insert it into the database
+        foreach ($voluntarywork_data as $voluntaryData) {
+            if (insertDataIntoTable($conn, $voluntary_work_tb_sql, $voluntaryData)) {
+                // Insertion successful
+            } else {
+                // Insertion failed
+                echo "Insertion into voluntary_work_tb failed: " . $conn->error;
+            }
         }
-        $training_programs_tb_sql ="INSERT INTO training_programs_tb(
+
+
+        $rowNumbersProgram = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]; // Update this array as needed
+
+        // Define arrays for training program data
+        $program_title = [];
+        $program_from = [];
+        $program_to = [];
+        $program_duration = [];
+        $program_type = [];
+        $program_sponsor = [];
+
+        foreach ($rowNumbersProgram as $rowNumber4) {
+            // Fetch data from the Excel worksheet for the current row
+            $program_title[] = validateAndSanitizeInput($worksheet3->getCell("A$rowNumber4")->getValue());
+            $program_from[] = validateAndSanitizeInput($worksheet3->getCell("E$rowNumber4")->getValue());
+            $program_to[] = validateAndSanitizeInput($worksheet3->getCell("F$rowNumber4")->getValue());
+            $program_duration[] = validateAndSanitizeInput($worksheet3->getCell("G$rowNumber4")->getValue());
+            $program_type[] = validateAndSanitizeInput($worksheet3->getCell("H$rowNumber4")->getValue());
+            $program_sponsor[] = validateAndSanitizeInput($worksheet3->getCell("I$rowNumber4")->getValue());
+        }
+
+        // Prepare the data for insertion into the training_programs_tb
+        $trainingprogram_data = [];
+        foreach ($program_title as $key => $title) {
+            if (!empty($title) && !empty($program_from[$key]) && !empty($program_to[$key]) && !empty($program_duration[$key])
+            && !empty($program_type[$key]) && !empty($program_sponsor[$key])) {
+                $trainingprogram_data[] = [
+                    $userID,
+                    $title,
+                    $program_from[$key],
+                    $program_to[$key],
+                    $program_duration[$key],
+                    $program_type[$key],
+                    $program_sponsor[$key]
+                ];
+            }
+        }
+
+        // Define the SQL statement
+        $training_programs_tb_sql = "INSERT INTO training_programs_tb (
             userid,
             title,
             training_from_date,
@@ -489,28 +513,73 @@ if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOA
             duration,
             type,
             sponsor
-        ) VALUES(?,?,?,?,?,?,?)";
-        if (insertDataIntoTable($conn, $training_programs_tb_sql, $data5)) {
-            echo "";
+        ) VALUES (?,?,?,?,?,?,?)";
+
+        // Loop through the data and insert it into the database
+        foreach ($trainingprogram_data as $trainingData) {
+            if (insertDataIntoTable($conn, $training_programs_tb_sql, $trainingData)) {
+                // Insertion successful
+            } else {
+                // Insertion failed
+                echo "Insertion into training_programs_tb failed: " . $conn->error;
+            }
         }
-        $other_info_tb_sql ="INSERT INTO other_info_tb(
+
+        $rowNumbersOther = [47, 48 , 49, 50 , 51]; // Update this array as needed
+
+        // Define arrays for other information data
+        $other_hobbies = [];
+        $other_recognition = [];
+        $other_association = [];
+
+        foreach ($rowNumbersOther as $rowNumber5) {
+            // Fetch data from the Excel worksheet for the current row
+            $other_hobbies[] = validateAndSanitizeInput($worksheet3->getCell("A$rowNumber5")->getValue());
+            $other_recognition[] = validateAndSanitizeInput($worksheet3->getCell("C$rowNumber5")->getValue());
+            $other_association[] = validateAndSanitizeInput($worksheet3->getCell("I$rowNumber5")->getValue());
+        }
+
+        // Prepare the data for insertion into the other_info_tb
+        $otherinfo_data = [];
+        foreach ($other_hobbies as $key => $skills_hobbies) {
+            if (!empty($skills_hobbies) && !empty($other_recognition[$key]) && !empty($other_association[$key])) {
+                $otherinfo_data[] = [
+                    $userID,
+                    $skills_hobbies,
+                    $other_recognition[$key],
+                    $other_association[$key]
+                ];
+            }
+        }
+
+        // Define the SQL statement
+        $other_info_tb_sql = "INSERT INTO other_info_tb (
             userid,
             skills_hobbies,
             recognition,
             association
+        ) VALUES (?,?,?,?)";
 
-        ) VALUES(?,?,?,?)";
-         if (insertDataIntoTable($conn, $other_info_tb_sql, $data6)) {
-            echo "";
+        // Loop through the data and insert it into the database
+        foreach ($otherinfo_data as $otherData) {
+            if (insertDataIntoTable($conn, $other_info_tb_sql, $otherData)) {
+                // Insertion successful
+            } else {
+                // Insertion failed
+                echo "Insertion into other_info_tb failed: " . $conn->error;
+            }
         }
-
-
 
         // Close the database connection
         $conn->close();
-    } else {
-        echo "Invalid file or file upload failed.";
-    }
+        } else {
+            echo "Invalid file or file upload failed.";
+        }
+
+
+   
+
+                
     echo "<script>alert('File uploaded succesfully')</script>";
 
     //notification

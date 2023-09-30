@@ -1,3 +1,65 @@
+<?php
+// include '../header.php';
+// include '../config.php';
+// $userID = $_SESSION['id'];
+if(isset($_POST['save_voluntary'])){
+    $updateVoluntaryDetails = isset($_POST['update-voluntary-details']) ? json_decode($_POST['update-voluntary-details'], true) : array();
+
+    
+        foreach ($updateVoluntaryDetails as $updateVoluntary) {
+        $userID = $_SESSION['id'];
+        $organization = $updateVoluntary['updated_organization'];
+        $voluntaryfrom = $updateVoluntary['updated_voluntaryfrom'];
+        $voluntaryto = $updateVoluntary['updated_voluntaryto'];
+        $hours = $updateVoluntary['updated_hours'];
+        $position = $updateVoluntary['updated_position'];             
+
+        $queryVoluntaryDetails = "INSERT INTO `voluntary_work_tb` (userid, organization, from_date, to_date, hours, position) VALUES (?,?,?,?,?,?)";
+        $stmt_updateVoluntary = $con->prepare($queryVoluntaryDetails);
+        
+
+        $stmt_updateVoluntary->bind_param('isssss', $userID, $organization, $voluntaryfrom, $voluntaryto, $hours, $position);
+
+        $execute_updateVoluntary = $stmt_updateVoluntary->execute();
+        
+
+        if (!$execute_updateVoluntary) {
+            die(mysqli_error($con));
+            die('Error: ' . $stmt_familyDetails->error);            
+        }       
+         
+        }
+        $stmt_updateVoluntary->close();
+        //notification
+        $queryvolunatryNotification = "INSERT INTO `notification_tb` (fullname, faculty_type, date_upload, updated_part) VALUES (?, ?, ?, ?)";
+
+        $stmt_volunatryNotification = $con->prepare($queryvolunatryNotification);
+
+        $stmt_volunatryNotification->bind_param('ssss', $fullname, $facultyType, $date, $section);
+
+        $fullname = $_SESSION['fullname'];
+        date_default_timezone_set("Asia/Manila");
+        $date = date("Y-m-d");
+        $section = "edited his/her Voluntary Work Details";
+        $facultyType = $_SESSION['type'];
+
+        $execute_volunatryNotification = $stmt_volunatryNotification->execute();
+
+        if (!$execute_volunatryNotification){        
+        echo "Error: " . $stmtvolunatrygNotification->error;
+        }else{
+            echo "Notification inserted successfully.";
+        $stmt_volunatryNotification->close(); 
+                
+        }
+        $con->close();
+    }
+    
+
+$updateVoluntaryDetails = isset($_SESSION['updateVoluntaryDetails']) ? $_SESSION['updateVoluntaryDetails'] : array();
+
+?>
+<!-- <button type="button" class="btn btn-success px-3 edit-btn-1" data-bs-toggle="modal" data-bs-target="#exampleModal6">Edit</button> -->
 <div class="modal fade " id="exampleModal6"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -24,11 +86,25 @@
                                         </tr>                                     
                                     </thead>
                                     <tbody>
+                                    <?php
+                                            $querySelectVoluntary =  "SELECT * FROM `voluntary_work_tb` where userid = $userID";
+                                            $sqlSelectVoluntary = mysqli_query($con, $querySelectVoluntary);
+
+                                            while ($rowUpdateVoluntary = mysqli_fetch_array($sqlSelectVoluntary)){
+                                                echo '<tr>
+                                                <td>'.$rowUpdateVoluntary['organization'].'</td>
+                                                <td>'.$rowUpdateVoluntary['from_date'].'</td>
+                                                <td>'.$rowUpdateVoluntary['to_date'].'</td>
+                                                <td>'.$rowUpdateVoluntary['hours'].'</td>
+                                                <td>'.$rowUpdateVoluntary['position'].'</td>
+                                                </tr>';
+                                            }
+                                        ?>
                                     </tbody>                                    
                                 </table>
                                 </div>
                                 <hr>
-                                <h5>Update list of Volunatary Work</h5>
+                                <h5>Update list of Voluntary Work</h5>
                         <form method="POST">
                             <div class="row align-items-start mt-4">
                                     <div class="col">
@@ -39,10 +115,10 @@
                                         <p>Inclusive Dates</p>
                                         <div class="input-group input-group-sm mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-sm"> From:</span>
-                                            <input type="date" name="up_voluntary-from-date" class="form-control">
+                                            <input type="text" name="up_voluntary-from-date" class="form-control">
                                             <span class="mx-2"></span>
                                             <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                            <input type="date" name="up_voluntary-to-date" class="form-control">
+                                            <input type="text" name="up_voluntary-to-date" class="form-control">
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Number of Hours:</span>
@@ -81,7 +157,7 @@
                                         
                                     </tbody>
                                     <input type="hidden" name="userid" value="<?php echo $userID; ?>">
-                                    <input type="hidden" name="update-voluntary-details" id="update-voluntary-details-input" value="<?php echo htmlspecialchars(json_encode($updateVoluntaryDetails)); ?>">
+                                    <input type="hidden" name="update-voluntary-details" id="update-voluntary-input" value="<?php echo htmlspecialchars(json_encode($updateVoluntaryDetails)); ?>">
                                 </table>
                             </div>
                     </div>
@@ -107,7 +183,7 @@
        
 
         // Create the table row HTML
-        var newRow = '<tr>' +
+        var newRow2 = '<tr>' +
             '<td>' + up_organization + '</td>' +
             '<td>' + up_voluntaryfrom + '</td>' +
             '<td>' + up_voluntaryto + '</td>' +
@@ -117,7 +193,7 @@
             '</tr>';
 
         // Append the new row to the table body
-        $('.update-voluntary-table tbody').append(newRow);
+        $('.update-voluntary-table tbody').append(newRow2);
 
         // Clear the input fields
         $('input[name="up_organization"]').val('');
@@ -128,8 +204,8 @@
         
 
         // Update the hidden input field with the updated civil service details array
-        var currentDetails = JSON.parse($('#update-voluntary-details-input').val());
-        currentDetails.push({
+        var currentDetails2 = JSON.parse($('#update-voluntary-input').val());
+        currentDetails2.push({
             updated_organization: up_organization,
             updated_voluntaryfrom: up_voluntaryfrom,
             updated_voluntaryto: up_voluntaryto,
@@ -137,7 +213,7 @@
             updated_position: up_position           
             
         });
-        $('#update-voluntary-details-input').val(JSON.stringify(currentDetails));
+        $('#update-voluntary-input').val(JSON.stringify(currentDetails2));
     });  
 
 
@@ -148,10 +224,10 @@
         $(this).closest('tr').remove();
 
         // Update the hidden input field with the updated education details array
-        var currentDetails = JSON.parse($('#update-voluntary-details-input').val());
-        var rowIndex = $(this).closest('tr').index();
-        currentDetails.splice(rowIndex, 1);
-        $('#update_voluntary-details-input').val(JSON.stringify(currentDetails));
+        var currentDetails2 = JSON.parse($('#update-voluntary-input').val());
+        var rowIndex2 = $(this).closest('tr').index();
+        currentDetails2.splice(rowIndex2, 1);
+        $('#update-voluntary-input').val(JSON.stringify(currentDetails2));
     });
 });
     </script>

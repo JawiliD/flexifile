@@ -1,3 +1,65 @@
+<?php
+// include '../header.php';
+// include '../config.php';
+if(isset($_POST['save_education'])){
+    $updateEducationDetails = isset($_POST['update-education-details']) ? json_decode($_POST['update-education-details'], true) : array();
+
+    // Insert education details into the database
+    foreach ($updateEducationDetails as $up_education) {
+        $userID = $_SESSION['id'];
+        $level = $up_education['up_level'];
+        $schoolName = $up_education['up_school_name'];
+        $degree = $up_education['up_degree'];
+        $fromDate = $up_education['up_from_date'];
+        $toDate = $up_education['up_to_date'];
+        $units = $up_education['up_units'];
+        $graduated = $up_education['up_year_graduated'];
+        $honors = $up_education['up_honors'];
+
+        $queryeducationDetails = "INSERT INTO `education_tb` (userid, level, schoolName, degree, fromDate, toDate, units, graduated, honors) VALUES (?,?,?,?,?,?,?,?,?)";
+        $stmt_updateEducation = $con->prepare($queryeducationDetails);
+
+        $stmt_updateEducation->bind_param('issssssss', $userID, $level, $schoolName, $degree, $fromDate, $toDate, $units, $graduated, $honors);
+       
+        $execute_updateEducation = $stmt_updateEducation->execute();
+
+        if (!$execute_updateEducation) {
+            die(mysqli_error($con));
+        } 
+    }
+    $stmt_updateEducation->close();
+    unset($_SESSION['updateEducationDetails']);
+    
+    //notification
+    $queryEducNotification = "INSERT INTO `notification_tb` (fullname, faculty_type, date_upload, updated_part) VALUES (?, ?, ?, ?)";
+
+    $stmt_educNotification = $con->prepare($queryEducNotification);
+
+    $stmt_educNotification->bind_param('ssss', $fullname, $facultyType, $date, $section);
+
+    $fullname = $_SESSION['fullname'];
+    date_default_timezone_set("Asia/Manila");
+    $date = date("Y-m-d");
+    $section = "edited his/her Education Details";
+    $facultyType = $_SESSION['type'];
+
+    $execute_educNotification = $stmt_educNotification->execute();
+
+    if (!$execute_educNotification){        
+      echo "Error: " . $stmt_educNotification->error;
+    }else{
+        echo "Notification inserted successfully.";
+      $stmt_educNotification->close(); 
+      $con->close();       
+    }   
+
+   
+}   
+
+$updateEducationDetails = isset($_SESSION['updateEducationDetails']) ? $_SESSION['updateEducationDetails'] : array();
+
+?>
+<!-- <button type="button" class="btn btn-success px-3 edit-btn-1"data-bs-toggle="modal" data-bs-target="#exampleModal3">Edit</button> -->
 <div class="modal fade" id="exampleModal3"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -30,6 +92,26 @@
                                     </tr>                                     
                                 </thead>
                                 <tbody>
+                                <?php
+                                    
+                                    $querySelectEducation = "SELECT * FROM `education_tb` where userid = $userID";
+                                    $sqlSelectEducation = mysqli_query($con,$querySelectEducation);
+
+                                    while($rowSelect = mysqli_fetch_array($sqlSelectEducation)){
+                                        echo '<tr>
+                                        <td>'.$rowSelect['level'].'</td>
+                                        <td>'.$rowSelect['schoolName'].'</td>
+                                        <td>'.$rowSelect['degree'].'</td>
+                                        <td>'.$rowSelect['fromDate'].'</td>
+                                        <td>'.$rowSelect['toDate'].'</td>
+                                        <td>'.$rowSelect['units'].'</td>
+                                        <td>'.$rowSelect['graduated'].'</td>
+                                        <td>'.$rowSelect['honors'].'</td>                                        
+                                        </tr>';
+                                    }
+
+
+                                    ?>
                                 </tbody>                                
                             </table>
                         </div>   
@@ -41,12 +123,12 @@
                                 <div class="col">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Level:</span>
-                                        <select class="form-control" name="level" id="level">
-                                            <option value="elementary">Elementary</option>
-                                            <option value="secondary">Secondary</option>
-                                            <option value="vocational">Vocational</option>
-                                            <option value="college">College</option>
-                                            <option value="graduate">Graduate Studies</option>
+                                        <select class="form-control" name="up_level" id="up_level">
+                                            <option value="ELEMENTARY">Elementary</option>
+                                            <option value="SECONDARY">Secondary</option>
+                                            <option value="VOCATIONAL / TRADE COURSE">Vocational</option>
+                                            <option value="COLLEGE">College</option>
+                                            <option value="GRADUATE STUDIES">Graduate Studies</option>
                                         </select>   
                                     </div>
                                     <div class="input-group input-group-sm mb-3">
@@ -134,25 +216,25 @@ $(document).ready(function() {
     $('.btn.btn-primary.addbtn').on('click', function(e) {
         e.preventDefault(); // Prevent form submission
 
-        var level = $('#level').val();
-        var schoolName = $('input[name="up_schoolName"]').val();
-        var degree = $('input[name="up_degree"]').val();
-        var fromDate = $('input[name="up_fromDate"]').val();
-        var toDate = $('input[name="up_toDate"]').val();
-        var units = $('input[name="up_units"]').val();
-        var graduated = $('input[name="up_graduated"]').val();
-        var honors = $('input[name="up_honors"]').val();
+        var up_level = $('#up_level').val();
+        var up_schoolName = $('input[name="up_schoolName"]').val();
+        var up_degree = $('input[name="up_degree"]').val();
+        var up_fromDate = $('input[name="up_fromDate"]').val();
+        var up_toDate = $('input[name="up_toDate"]').val();
+        var up_units = $('input[name="up_units"]').val();
+        var up_graduated = $('input[name="up_graduated"]').val();
+        var up_honors = $('input[name="up_honors"]').val();
 
         // Create the table row HTML
         var newRow = '<tr>' +
-            '<td>' + level + '</td>' +
-            '<td>' + schoolName + '</td>' +
-            '<td>' + degree + '</td>' +
-            '<td>' + fromDate + '</td>' +
-            '<td>' + toDate + '</td>' +
-            '<td>' + units + '</td>' +
-            '<td>' + graduated + '</td>' +
-            '<td>' + honors + '</td>' +
+            '<td>' + up_level + '</td>' +
+            '<td>' + up_schoolName + '</td>' +
+            '<td>' + up_degree + '</td>' +
+            '<td>' + up_fromDate + '</td>' +
+            '<td>' + up_toDate + '</td>' +
+            '<td>' + up_units + '</td>' +
+            '<td>' + up_graduated + '</td>' +
+            '<td>' + up_honors + '</td>' +
             '<td><button class="btn btn-danger rounded delete-update-education">Delete</button></td>' +
             '</tr>';
 
@@ -171,14 +253,14 @@ $(document).ready(function() {
         // Update the hidden input field with the updated education details array
         var currentDetails = JSON.parse($('#update-education-details-input').val());
         currentDetails.push({
-            level: level,
-            school_name: schoolName,
-            degree: degree,
-            from_date: fromDate,
-            to_date: toDate,
-            units: units,
-            year_graduated: graduated,
-            honors: honors
+            up_level: up_level,
+            up_school_name: up_schoolName,
+            up_degree: up_degree,
+            up_from_date: up_fromDate,
+            up_to_date: up_toDate,
+            up_units: up_units,
+            up_year_graduated: up_graduated,
+            up_honors: up_honors
         });
         $('#update-education-details-input').val(JSON.stringify(currentDetails));
     });

@@ -1,3 +1,65 @@
+<?php
+include '../header.php';
+include '../config.php';
+$userID = $_SESSION['id'];
+if(isset($_POST['save_work'])){
+
+    $updateWorkDetails = isset($_POST['update-work-details']) ? json_decode($_POST['update-work-details'], true) : array();
+
+    foreach ($updateWorkDetails as $up_work) {
+        $userID = $_SESSION['id'];
+        $workfrom = $up_work['up_workfrom'];
+        $workto = $up_work['up_workto'];
+        $department = $up_work['up_department'];
+        $salary = $up_work['up_salary'];
+        $position = $up_work['up_position'];
+        $paygrade = $up_work['up_paygrade'];
+        $appointment = $up_work['up_appointment'];       
+        $govservice = $up_work['up_govservice'];       
+
+        $queryUpdateworkDetails = "INSERT INTO `work_experience_tb` (userid, work_from_date, work_to_date, position_title, department, salary, paygrade, appointment, gov_service) VALUES (?,?,?,?,?,?,?,?,?)";
+        $stmt_updateWorkDetails = $con->prepare($queryUpdateworkDetails);
+
+        $stmt_updateWorkDetails->bind_param('issssssss', $userID, $workfrom, $workto, $position, $department, $salary, $paygrade, $appointment, $govservice);
+
+        $execute_updateWorkDetails = $stmt_updateWorkDetails->execute();
+
+        if (!$execute_updateWorkDetails) {
+            die(mysqli_error($con));
+        }
+    }
+    unset($_SESSION['updateWorkDetails']);
+    $stmt_updateWorkDetails->close();
+     //notification
+     $queryworkNotification = "INSERT INTO `notification_tb` (fullname, faculty_type, date_upload, updated_part) VALUES (?, ?, ?, ?)";
+
+     $stmt_workNotification = $con->prepare($queryworkNotification);
+
+     $stmt_workNotification->bind_param('ssss', $fullname, $facultyType, $date, $section);
+
+     $fullname = $_SESSION['fullname'];
+     date_default_timezone_set("Asia/Manila");
+     $date = date("Y-m-d");
+     $section = "edited his/her Work Experience Details";
+     $facultyType = $_SESSION['type'];
+
+     $execute_workNotification = $stmt_workNotification->execute();
+
+     if (!$execute_workNotification){        
+     echo "Error: " . $stmtworkgNotification->error;
+     }else{
+         echo "Notification inserted successfully.";
+     $stmt_workNotification->close(); 
+             
+     }
+     $con->close();
+}
+
+$updateWorkDetails = isset($_SESSION['updateWorkDetails']) ? $_SESSION['updateWorkDetails'] : array();
+
+?>
+
+<button type="button" class="btn btn-success px-3 edit-btn-1 " data-bs-toggle="modal" data-bs-target="#exampleModal5">Edit</button>
 <div class="modal fade " id="exampleModal5"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -11,6 +73,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="2">Inclusive Dates</th> 
+                                    <th>Position or Title</th>
                                     <th>Department/Agency</th>
                                     <th>Monthly Salary</th>
                                     <th>Salary/Pay Grade</th>
@@ -27,7 +90,23 @@
                                     <th></th>                                    
                                 </tr>                                     
                             </thead>
-                            <tbody>                         
+                            <tbody>  
+                                <?php
+                                $sqlSelectWork = mysqli_query($con,"SELECT * FROM `work_experience_tb` where userid = $userID");
+                                while($rowWork = mysqli_fetch_array($sqlSelectWork)){
+                                    echo'
+                                    <tr>
+                                    <td>'.$rowWork['work_from_date'].'</td>
+                                    <td>'.$rowWork['work_to_date'].'</td>
+                                    <td>'.$rowWork['position_title'].'</td>
+                                    <td>'.$rowWork['department'].'</td>
+                                    <td>'.$rowWork['salary'].'</td>
+                                    <td>'.$rowWork['paygrade'].'</td>
+                                    <td>'.$rowWork['appointment'].'</td>
+                                    <td>'.$rowWork['gov_service'].'</td>
+                                    </tr>';
+                                }
+                                ?>
                             </tbody>                            
                         </table>
                     </div>
@@ -39,10 +118,14 @@
                                 <p>Inclusive Dates </p>
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">From:</span>
-                                    <input type="date" name="up_work-from-date" class="form-control">
+                                    <input type="text" name="up_work-from-date" class="form-control">
                                     <span class="mx-2"></span>
                                     <span class="input-group-text" id="inputGroup-sizing-sm">To:</span>
-                                    <input type="date" name="up_work-to-date" class="form-control">
+                                    <input type="text" name="up_work-to-date" class="form-control">
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Position Title</span>
+                                    <input type="text" name="up_position" class="form-control">
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Department/Agency/Office:</span>
@@ -78,6 +161,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="2">Inclusive Dates</th> 
+                                    <th>Position Title</th>
                                     <th>Department/Agency</th>
                                     <th>Monthly Salary</th>
                                     <th>Salary/Pay Grade</th>
@@ -88,6 +172,7 @@
                                 <tr>
                                     <th>From</th>
                                     <th>To</th>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -121,6 +206,7 @@
         var up_workto = $('input[name="up_work-to-date"]').val();
         var up_department = $('input[name="up_department"]').val();
         var up_salary = $('input[name="up_salary"]').val();
+        var up_position = $('input[name="up_position"]').val();
         var up_paygrade = $('input[name="up_paygrade"]').val();
         var up_appointment = $('input[name="up_appointment"]').val();
         var up_govservice = $('input[name="up_gov-service"]').val();
@@ -132,6 +218,7 @@
             '<td>' + up_workto + '</td>' +
             '<td>' + up_department + '</td>' +
             '<td>' + up_salary + '</td>' +
+            '<td>' + up_position + '</td>' +
             '<td>' + up_paygrade + '</td>' +
             '<td>' + up_appointment + '</td>' +            
             '<td>' + up_govservice + '</td>' +            
@@ -146,6 +233,7 @@
         $('input[name="up_work-to-date"]').val('');
         $('input[name="up_department"]').val('');
         $('input[name="up_salary"]').val('');
+        $('input[name="up_position"]').val('');
         $('input[name="up_paygrade"]').val('');
         $('input[name="up_appointment"]').val('');
         $('input[name="up_gov-service"]').val('');
@@ -154,13 +242,14 @@
         // Update the hidden input field with the updated civil service details array
         var currentDetails = JSON.parse($('#update-work-details-input').val());
         currentDetails.push({
-            workfrom: up_workfrom,
-            workto: up_workto,
-            department: up_department,
-            salary: up_salary,
-            paygrade: up_paygrade,
-            appointment: up_appointment,
-            govservice: up_govservice
+            up_workfrom: up_workfrom,
+            up_workto: up_workto,
+            up_department: up_department,
+            up_salary: up_salary,
+            up_position: up_position,
+            up_paygrade: up_paygrade,
+            up_appointment: up_appointment,
+            up_govservice: up_govservice
             
         });
         $('#update-work-details-input').val(JSON.stringify(currentDetails));

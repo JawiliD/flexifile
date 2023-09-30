@@ -1,3 +1,132 @@
+<?php 
+// include '../header.php';
+// include '../config.php';   
+// $userID = $_SESSION['id'];
+$queryIdentifyFamily = "SELECT * FROM `family_background_tb` where userid=$userID";
+$sqlIdentifyFamily = mysqli_query($con,$queryIdentifyFamily);
+$familyRow = mysqli_fetch_array($sqlIdentifyFamily);
+
+   
+if (isset($_POST['save_family'])) {
+    // Prepare the family background query
+    $queryupdateFamily = "UPDATE `family_background_tb` SET  
+        spouse_surname = ?, 
+        spouse_firstname = ?, 
+        spouse_midname = ?, 
+        occupation = ?, 
+        employer = ?, 
+        business_address = ?, 
+        telephone_no = ?, 
+        father_surname = ?, 
+        father_firstname = ?, 
+        father_midname = ?, 
+        father_extension = ?, 
+        mother_surname = ?, 
+        mother_firstname = ?, 
+        mother_midname = ? 
+    WHERE userid = ?";
+    
+    $stmt_updateFamily = $con->prepare($queryupdateFamily);
+    
+    // Bind parameters
+    $stmt_updateFamily->bind_param(
+        'ssssssssssssssi',
+        $spouseSurname,
+        $spouseFirstname,
+        $spouseMidname,
+        $occupation,
+        $employer,
+        $business,
+        $telephoneNo,
+        $fatherSurname,
+        $fatherFirstname,
+        $fatherMidname,
+        $fatherExtension,
+        $motherSurname,
+        $motherFirstname,
+        $motherMidname,
+        $userid
+    );
+
+    // Set parameter values
+    $userid = $_SESSION['id'];
+    $spouseSurname = $_POST['spouseSurname'];
+    $spouseFirstname = $_POST['spouseFirstname'];
+    $spouseMidname = $_POST['spouseMidname'];
+    $occupation = $_POST['occupation'];
+    $employer = $_POST['employer'];
+    $business = $_POST['business'];
+    $telephoneNo = $_POST['telephoneNo'];
+    $fatherSurname = $_POST['fatherSurname'];
+    $fatherFirstname = $_POST['fatherFirstname'];
+    $fatherMidname = $_POST['fatherMidname'];
+    $fatherExtension = $_POST['fatherExtension'];
+    $motherSurname = $_POST['motherSurname'];
+    $motherFirstname = $_POST['motherFirstname'];
+    $motherMidname = $_POST['motherMidname'];
+
+    // Execute the family background query
+    $execute_updateFamily = $stmt_updateFamily->execute();
+
+    if ($execute_updateFamily) {
+        // Store child data in an array
+        $updatefamilyDetails = isset($_POST['update-family-details']) ? json_decode($_POST['update-family-details'], true) : [];
+
+        // Add child records to the database
+        foreach ($updatefamilyDetails as $up_family) {
+            $userID = $_SESSION['id'];
+            $childname = $up_family['up_childname'];
+            $childbirth = $up_family['up_childbirth'];
+
+            $queryfamilyDetails = "INSERT INTO `family_children_tb` (userid, childname, childbirth) VALUES (?, ?, ?)";
+            $stmt_familyDetails = $con->prepare($queryfamilyDetails);
+
+            // Bind parameters
+            $stmt_familyDetails->bind_param('iss', $userid, $childname, $childbirth);
+
+            $execute_updateFamilyDetails = $stmt_familyDetails->execute();
+
+            // Execute the query
+            if (!$execute_updateFamilyDetails) {
+                // Insertion failed, handle the error
+                die('Error: ' . $stmt_familyDetails->error);            
+            } 
+                
+        }
+
+        // Clear the session variable for family details
+        unset($_SESSION['updatefamilyDetails']);
+    }
+
+    //notification
+    $queryFamNotification = "INSERT INTO `notification_tb` (fullname, faculty_type, date_upload, updated_part) VALUES (?, ?, ?, ?)";
+
+    $stmt_famNotification = $con->prepare($queryFamNotification);
+
+    $stmt_famNotification->bind_param('ssss', $fullname, $facultyType, $date, $section);
+
+    $fullname = $_SESSION['fullname'];
+    date_default_timezone_set("Asia/Manila");
+    $date = date("Y-m-d");
+    $section = "edited his/her Family Background Details";
+    $facultyType = $_SESSION['type'];
+
+    $execute_famNotification = $stmt_famNotification->execute();
+
+    if (!$execute_famNotification){        
+      echo "Error: " . $stmt_famNotification->error;
+    }else{
+        echo "Notification inserted successfully.";
+      $stmt_famNotification->close(); 
+      $con->close();       
+    }
+    
+} 
+    
+    $updatefamilyDetails = isset($_SESSION['updatefamilyDetails']) ? $_SESSION['updatefamilyDetails'] : array();
+
+?>
+<!-- <button type="button" class="btn btn-success px-3 edit-btn-1 "data-bs-toggle="modal" data-bs-target="#exampleModal2">Edit</button> -->
 <div class="modal fade" id="exampleModal2"data-bs-backdrop="false" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -11,62 +140,62 @@
                         <div class="col">                                    
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Spouse Surname:</span>
-                            <input type="text" name="spouseSurname" class="form-control" value="">
+                            <input type="text" name="spouseSurname" class="form-control" value="<?php echo $familyRow['spouse_surname'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Spouse Firstname:</span>
-                                <input type="text" name="spouseFirstname" class="form-control" value="">
+                                <input type="text" name="spouseFirstname" class="form-control" value="<?php echo $familyRow['spouse_firstname'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Spouse Middle Name:</span>
-                                <input type="text" name="spouseMidname" class="form-control" value="">
+                                <input type="text" name="spouseMidname" class="form-control" value="<?php echo $familyRow['spouse_midname'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Occupation:</span>
-                                <input type="text" name="occupation" class="form-control" value="">
+                                <input type="text" name="occupation" class="form-control" value="<?php echo $familyRow['occupation'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Employer/Business Name:</span>
-                                <input type="text" name="employer" class="form-control" value="">
+                                <input type="text" name="employer" class="form-control" value="<?php echo $familyRow['employer'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Business Address:</span>
-                                <input type="text" name="business" class="form-control" value="">
+                                <input type="text" name="business" class="form-control" value="<?php echo $familyRow['business_address'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Telephone no:</span>
-                                <input type="text" name="telephoneNo" class="form-control" value="">
+                                <input type="text" name="telephoneNo" class="form-control" value="<?php echo $familyRow['telephone_no'] ?>">
                             </div>        
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Father's Surname:</span>
-                                <input type="text" name="fatherSurname" class="form-control" value="">
+                                <input type="text" name="fatherSurname" class="form-control" value="<?php echo $familyRow['father_surname'] ?>">
                             </div>                                
                         </div>
                         <div class="col">                                       
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Father's Firstname:</span>
-                                <input type="text" name ="fatherFirstname" class="form-control" value="">
+                                <input type="text" name ="fatherFirstname" class="form-control" value="<?php echo $familyRow['father_firstname'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Father's Middle name:</span>
-                                <input type="text" name="fatherMidname" class="form-control" value="">
+                                <input type="text" name="fatherMidname" class="form-control" value="<?php echo $familyRow['father_midname'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Name Extension(JR.,SR):</span>
-                                <input type="text" name="fatherExtension" class="form-control" value="">
+                                <input type="text" name="fatherExtension" class="form-control" value="<?php echo $familyRow['father_extension'] ?>">
                             </div>
                             <p>Mother's Maiden Name</p>                                        
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Mother's Surname:</span>
-                                <input type="text" name="motherSurname" class="form-control" value="">
+                                <input type="text" name="motherSurname" class="form-control" value="<?php echo $familyRow['mother_surname'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Mother's Firstname:</span>
-                                <input type="text" name="motherFirstname" class="form-control" value="">
+                                <input type="text" name="motherFirstname" class="form-control" value="<?php echo $familyRow['mother_firstname'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Mother's Middle name:</span>
-                                <input type="text" name="motherMidname" class="form-control" value="">
+                                <input type="text" name="motherMidname" class="form-control" value="<?php echo $familyRow['mother_midname'] ?>">
                             </div>
                         </div>
                     </div> 
@@ -81,6 +210,20 @@
                             </tr>                                                            
                         </thead>
                         <tbody>
+                        <?php
+                            $queryIdentifyChildren = "SELECT * FROM `family_children_tb` where userid = $userID";
+                            $sqlIdentifyChildren = mysqli_query($con,$queryIdentifyChildren);
+
+                            while($childrenRow = mysqli_fetch_array($sqlIdentifyChildren)){
+                                echo '
+                                <tr>
+                                    <td>'.$childrenRow['childname'].'</td>
+                                    <td>'.$childrenRow['childbirth'].'</td>
+                                </tr>';
+                            }
+
+
+                        ?>
                             
                         </tbody>                        
                     </table>
@@ -92,7 +235,7 @@
                         <input type="text" name="up_childname" class="form-control">
                         <span class="mx-2"></span>
                         <span class="input-group-text" id="inputGroup-sizing-sm">Date of Birth:</span>
-                        <input type="date" name="up_childbirth" class="form-control">
+                        <input type="text" name="up_childbirth" class="form-control">
                     </div>                               
                     <div class="text-end">  
                         <button type="button" name="addBtn" class="btn btn-primary addbtn5" >Add</button>
@@ -149,8 +292,8 @@
         // Update the hidden input field with the updated child details array
         var currentDetails = JSON.parse($('#update-family-details-input').val());
         currentDetails.push({
-            childname: up_childname,
-            childbirth: up_childbirth
+            up_childname: up_childname,
+            up_childbirth: up_childbirth
         });
         $('#update-family-details-input').val(JSON.stringify(currentDetails));
     });
