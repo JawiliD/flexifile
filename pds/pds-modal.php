@@ -176,6 +176,10 @@ include 'pds-php-syntax.php';
                                             <input type="text" name="spouseMidname" class="form-control">
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Spouse Extension:</span>
+                                            <input type="text" name="spouseExtension" class="form-control">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Occupation:</span>
                                             <input type="text" name="occupation" class="form-control">
                                         </div>

@@ -34,38 +34,26 @@ require '../config.php';
             <div class="table-facultyrole overflow-scroll ">
                 <table class="table table-striped ">
                     <thead class="table-success">
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Educational Attainment</th>
-                            <th scope="col">Appointment Status</th>
+                        <tr>                            
+                            <th scope="col">Name</th>                           
                             <th scope="col">Designation</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="table-secondary">
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>Sample</td>
-                            <td>Sample</td>
+                        <tr> 
                             <td>Sample</td>
                             <td>Sample</td>
                             <td>
                                 <button class="btn btn-primary  btn-sm"data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Sample</td>
-                            <td>Sample</td>
+                        <tr>                            
                             <td>Sample</td>
                             <td>Sample</td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td scope="row">3</td>
-                            <td>Sample</td>
-                            <td>Sample</td>
+                        <tr>                            
                             <td>Sample</td>
                             <td>Sample</td>
                             <td></td>

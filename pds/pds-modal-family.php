@@ -13,6 +13,7 @@ if (isset($_POST['save_family'])) {
         spouse_surname = ?, 
         spouse_firstname = ?, 
         spouse_midname = ?, 
+        spouse_extension = ?, 
         occupation = ?, 
         employer = ?, 
         business_address = ?, 
@@ -30,10 +31,11 @@ if (isset($_POST['save_family'])) {
     
     // Bind parameters
     $stmt_updateFamily->bind_param(
-        'ssssssssssssssi',
+        'sssssssssssssssi',
         $spouseSurname,
         $spouseFirstname,
         $spouseMidname,
+        $spouseExtension,
         $occupation,
         $employer,
         $business,
@@ -53,6 +55,7 @@ if (isset($_POST['save_family'])) {
     $spouseSurname = $_POST['spouseSurname'];
     $spouseFirstname = $_POST['spouseFirstname'];
     $spouseMidname = $_POST['spouseMidname'];
+    $spouseExtension = $_POST['spouseExtension'];
     $occupation = $_POST['occupation'];
     $employer = $_POST['employer'];
     $business = $_POST['business'];
@@ -149,6 +152,10 @@ if (isset($_POST['save_family'])) {
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Spouse Middle Name:</span>
                                 <input type="text" name="spouseMidname" class="form-control" value="<?php echo $familyRow['spouse_midname'] ?>">
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Spouse Extension:</span>
+                                <input type="text" name="spouseExtension" class="form-control" value="<?php echo $familyRow['spouse_extension'] ?>">
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Occupation:</span>

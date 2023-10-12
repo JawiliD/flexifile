@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
   $password = trim($_POST['password']);
 
   if (empty($email) || empty($password)) {
-    echo "<script>alert('Please fiil up all the fields')</script>";
+    echo "<script>alert('Please fill up all the fields')</script>";
   } else {
     $query = "SELECT * FROM user_tb WHERE email = ?";
     $stmt = $con->prepare($query);

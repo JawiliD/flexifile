@@ -32,8 +32,8 @@
                 <th scope="col">No.</th>
                 <th scope="col">Name</th>
                 <th scope="col">Faculty Type</th>
-                <th scope="col">Remaining Loads</th>
-                <th scope="col">Remaining Hours</th>
+                <th scope="col">Total Number of Units</th>
+                <th scope="col">Total Number of Hours</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>

@@ -98,6 +98,7 @@ if (!empty($rowfamily)) {
     $spouseSurname = $rowfamily['spouse_surname'];
     $spouseFirstname = $rowfamily['spouse_firstname'];
     $spouseMidname = $rowfamily['spouse_midname'];
+    $spouseExtension = $rowfamily['spouse_extension'];
     $occupation = $rowfamily['occupation'];
     $employer = $rowfamily['employer'];
     $businessAddress = $rowfamily['business_address'];
@@ -117,6 +118,7 @@ if (!empty($rowfamily)) {
     $spouseSurname = '';
     $spouseFirstname = '';
     $spouseMidname = '';
+    $spouseExtension = '';
     $occupation = '';
     $employer = '';
     $businessAddress = '';
@@ -152,27 +154,27 @@ if (!empty($rowfamily)) {
     include 'pds-modal.php';
     include 'pds-modal-upload.php';    
     ?>
-    <div class="profile-pds mt-3 rounded p-3">          
+    <div class="profile-pds mt-3 rounded p-2">          
         <button type="button" class="btn btn-dark"data-bs-toggle="modal" data-bs-target="#pdsmodal">Create</button>        
         <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal8">Upload</button>        
         <hr class="hr"/>
         <div class="profile-pds rounded bg-secondary bg-opacity-50 p-2 text-center">
             <div class="d-flex justify-content-center">
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="personal" href="#personal-info">Personal Information</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="personal" href="#personal-info">Personal Information</a>
                 <span class="vertical-line"></span>
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="family" href="#family-background">Family Background</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="family" href="#family-background">Family Background</a>
                 <span class="vertical-line"></span>
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="educational" href="#educational-background">Educational Background</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="educational" href="#educational-background">Educational Background</a>
                 <span class="vertical-line"></span>
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="civilservice" href="#civil-service">Civil Service Eligibility</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="civilservice" href="#civil-service">Civil Service Eligibility</a>
                 <span class="vertical-line"></span>
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="workexp" href="#work-exp">Work Experience</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="workexp" href="#work-exp">Work Experience</a>
                 <span class="vertical-line"></span>
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="voluntary" href="#voluntary-work">Voluntary Work</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="voluntary" href="#voluntary-work">Voluntary Work</a>
                 <span class="vertical-line"></span>
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="interventions" href="#intervention-ld">L&D Interventions</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="interventions" href="#intervention-ld">L&D Interventions</a>
                 <span class="vertical-line"></span>
-                <a class="d-inline link-opacity-100 px-2  nav-link-info"id="interventions" href="#other_info">Other Information</a>
+                <a class="d-inline link-opacity-100 px-1  nav-link-info"id="interventions" href="#other_info">Other Information</a>
             </div>
         </div>
         <div class="profile-pds-personal mt-3" id="personal-info">
@@ -311,6 +313,9 @@ if (!empty($rowfamily)) {
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <p>Spouse Middle Name: <?php echo $spouseMidname ;  ?></p>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <p>Spouse Extension: <?php echo $spouseExtension ;  ?></p>
                         </div>
                         <div class="input-group input-group-sm mb-3">
                              <p>Occupation: <?php echo $occupation;  ?></p>

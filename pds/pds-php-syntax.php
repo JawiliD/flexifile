@@ -51,11 +51,11 @@ if (isset($_POST['submit'])) {
   $execute_personal = $stmt_personal->execute();
 
   // Prepare the family background query
-  $queryfamily = "INSERT INTO `family_background_tb` (userid, spouse_surname, spouse_firstname, spouse_midname, occupation, employer, business_address, telephone_no, father_surname, father_firstname, father_midname, father_extension, mother_surname, mother_firstname, mother_midname) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $queryfamily = "INSERT INTO `family_background_tb` (userid, spouse_surname, spouse_firstname, spouse_midname, spouse_extension, occupation, employer, business_address, telephone_no, father_surname, father_firstname, father_midname, father_extension, mother_surname, mother_firstname, mother_midname) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   $stmt_family = $con->prepare($queryfamily);
 
   // Bind parameters
-  $stmt_family->bind_param('issssssssssssss', $userID, $spouseSurname, $spouseFirstname, $spouseMidname, $occupation, $employer, $business, $telephoneNo, $fatherSurname, $fatherFirstname, $fatherMidname, $fatherExtension, $motherSurname, $motherFirstname, $motherMidname);
+  $stmt_family->bind_param('isssssssssssssss', $userID, $spouseSurname, $spouseFirstname, $spouseMidname, $spouseExtension, $occupation, $employer, $business, $telephoneNo, $fatherSurname, $fatherFirstname, $fatherMidname, $fatherExtension, $motherSurname, $motherFirstname, $motherMidname);
 
 
   // Set parameter values
@@ -63,6 +63,7 @@ if (isset($_POST['submit'])) {
   $spouseSurname = $_POST['spouseSurname'];
   $spouseFirstname = $_POST['spouseFirstname'];
   $spouseMidname = $_POST['spouseMidname'];
+  $spouseExtension = $_POST['spouseExtension'];
   $occupation = $_POST['occupation'];
   $employer = $_POST['employer'];
   $business = $_POST['business'];   
@@ -87,6 +88,7 @@ if (isset($_POST['submit'])) {
       $voluntaryDetails = isset($_POST['voluntary-details']) ? json_decode($_POST['voluntary-details'], true) : array();
       $trainingDetails = isset($_POST['training-details']) ? json_decode($_POST['training-details'], true) : array();
       $otherDetails = isset($_POST['other-details']) ? json_decode($_POST['other-details'], true) : array();
+      $familyDetails = isset($_POST['family-details']) ? json_decode($_POST['family-details'], true) : array();
 
 
       // Insert education details into the database

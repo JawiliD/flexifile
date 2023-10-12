@@ -120,7 +120,7 @@ if (isset($_POST['signup'])) {
                         <option value="GE Faculty">GE Faculty</option>
                     </select>
                     <select class="w-100 p-2 rounded" name="role" id="role" required>
-                        <option value="default">Faculty Role...</option>
+                        <option value="default">User Type...</option>
                         <option value="faculty member">Faculty Member</option>
                         <option value="program head">Program Head</option>
                         <option value="dean">Dean</option>
